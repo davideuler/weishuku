@@ -7,13 +7,14 @@ from django.conf import settings
 import json
 import datetime
 from book.models import Book
+import json
+import urllib2
 
 
 def index(request):
     return HttpResponse(json.dumps('hello world!'), content_type="application/json")
 
 @cache_page(60 * 60 * 24)
-def book_list(request):
-    q = Book.objects.all()
-    book_list = [(item.title,item.isbn) for item in q]
-    return HttpResponse(json.dumps(book_list), content_type="application/json")
+def tag_list(request):
+    data = json.load(urllib2.urlopen('http://192.168.8.103:27080/weishuku/booktag/_find'))
+    return HttpResponse(json.dumps(data), content_type="application/json")
