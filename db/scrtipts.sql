@@ -74,7 +74,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `weishuku`.`Borrowinfo`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `weishuku`.`Borrowinfo` (
+CREATE  TABLE IF NOT EXISTS `weishuku`.`BorrowInfo` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `userid` VARCHAR(45) NULL ,
   `bookid` VARCHAR(45) NULL ,
@@ -88,7 +88,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `weishuku`.`Booktag`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `weishuku`.`Booktag` (
+CREATE  TABLE IF NOT EXISTS `weishuku`.`BookTag` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `bookid` VARCHAR(45) NULL ,
   `tagname` VARCHAR(45) NULL ,
