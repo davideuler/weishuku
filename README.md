@@ -18,6 +18,10 @@ sudo npm install -g cordova
 
 要在android sdk中安装 android build tools. (启动sdk/tools/android命令安装)。
 
+/usr/local/share/npm/lib/node_modules/cordova/bin/cordova platform add ios
+
+/usr/local/share/npm/lib/node_modules/cordova/bin/cordova build ios
+
 4.web :
 
 
