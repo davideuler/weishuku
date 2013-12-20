@@ -1,6 +1,6 @@
 
 
-function login() {
+function myLogin() {
 	var username = $('#login').value;
 	var password = $('#password').value;
 
@@ -17,6 +17,7 @@ function login() {
 			alert('success');
 			//var obj = eval('('+rValue+')')
 			alert(rValue.price);
+			window.location="booklist.html"
 		},
 		fail: function(e) {
 			alert('fail');
