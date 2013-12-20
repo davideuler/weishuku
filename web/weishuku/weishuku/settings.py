@@ -1,4 +1,4 @@
-# Django settings for weishuku project.
+import os
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -67,11 +67,10 @@ STATIC_ROOT = ''
 # Example: "http://example.com/static/", "http://static.example.com/"
 STATIC_URL = '/static/'
 
+BASE_DIR = '/Users/qiangwang/hackson/weishuku/web/weishuku/'
 # Additional locations of static files
 STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(BASE_DIR, "static"), 
 )
 
 # List of finder classes that know how to find static files in
@@ -120,8 +119,10 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
+    'django.contrib.admin',
+    'book',
+    'default',
+    'tag',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
