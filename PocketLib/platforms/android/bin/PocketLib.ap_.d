@@ -1,0 +1,27 @@
+/home/sky/project/personal/weishuku/PocketLib/platforms/android/bin/PocketLib.ap_ \
+ : /home/sky/project/personal/weishuku/PocketLib/platforms/android/res/drawable-xhdpi/icon.png \
+/home/sky/project/personal/weishuku/PocketLib/platforms/android/res/drawable/icon.png \
+/home/sky/project/personal/weishuku/PocketLib/platforms/android/res/values/strings.xml \
+/home/sky/project/personal/weishuku/PocketLib/platforms/android/res/drawable-hdpi/icon.png \
+/home/sky/project/personal/weishuku/PocketLib/platforms/android/res/xml/config.xml \
+/home/sky/project/personal/weishuku/PocketLib/platforms/android/res/drawable-mdpi/icon.png \
+/home/sky/project/personal/weishuku/PocketLib/platforms/android/res/drawable-ldpi/icon.png \
+/home/sky/project/personal/weishuku/PocketLib/platforms/android/bin/res/drawable-xhdpi/icon.png \
+/home/sky/project/personal/weishuku/PocketLib/platforms/android/bin/res/drawable/icon.png \
+/home/sky/project/personal/weishuku/PocketLib/platforms/android/bin/res/drawable-hdpi/icon.png \
+/home/sky/project/personal/weishuku/PocketLib/platforms/android/bin/res/drawable-mdpi/icon.png \
+/home/sky/project/personal/weishuku/PocketLib/platforms/android/bin/res/drawable-ldpi/icon.png \
+/home/sky/project/personal/weishuku/PocketLib/platforms/android/assets/www \
+/home/sky/project/personal/weishuku/PocketLib/platforms/android/assets/www/cordova.js \
+/home/sky/project/personal/weishuku/PocketLib/platforms/android/assets/www/config.xml \
+/home/sky/project/personal/weishuku/PocketLib/platforms/android/assets/www/index.html \
+/home/sky/project/personal/weishuku/PocketLib/platforms/android/assets/www/css \
+/home/sky/project/personal/weishuku/PocketLib/platforms/android/assets/www/cordova_plugins.js \
+/home/sky/project/personal/weishuku/PocketLib/platforms/android/assets/www/js \
+/home/sky/project/personal/weishuku/PocketLib/platforms/android/assets/www/img \
+/home/sky/project/personal/weishuku/PocketLib/platforms/android/assets/www/css/index.css \
+/home/sky/project/personal/weishuku/PocketLib/platforms/android/assets/www/js/jquery-1.10.2.js \
+/home/sky/project/personal/weishuku/PocketLib/platforms/android/assets/www/js/index.js \
+/home/sky/project/personal/weishuku/PocketLib/platforms/android/assets/www/js/main.js \
+/home/sky/project/personal/weishuku/PocketLib/platforms/android/assets/www/img/logo.png \
+/home/sky/project/personal/weishuku/PocketLib/platforms/android/bin/AndroidManifest.xml \
