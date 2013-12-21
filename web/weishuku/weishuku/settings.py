@@ -123,9 +123,11 @@ INSTALLED_APPS = (
     'book',
     'default',
     'tag',
+    'member',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
+
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

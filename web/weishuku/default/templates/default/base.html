@@ -60,21 +60,14 @@
 
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="./">登陆</a></li>
-            <li><a href="../navbar-static-top/">注册</a></li>
+            {% if is_login %}
+            <li class="active"><a href="./">{{ username }}</a></li>
+            {% else %}
+            <li class="active"><a href="{% url 'member:login' %}">登陆</a></li>
+            <li><a href="{% url 'member:register' %}">注册</a></li>
+            {% endif %}
           </ul>
         </div><!--/.nav-collapse -->
-      </div>
-
-      <div class="jumbotron">
-        <b><font size="16">心在远方，书在身边</font></b>
-        <form>
-          <input class="span2" type="text" maxlength="20" style="width:550px;" 
-                placeholder="感兴趣的作者，书和小组">
-          <a class="btn btn-lg btn-primary" style="line-height: 1.5;"  role="button">搜索</a>
-        </form>
-          
-        </p>
       </div>
 
         <div>

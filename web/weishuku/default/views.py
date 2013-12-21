@@ -10,7 +10,11 @@ def index(request):
     tag_list = list()
     for item in tag_data['results']:
         tag_list.append(item['name'])
-    print tag_list
     context['tag_list'] = tag_list
+
+    is_login = request.user.is_authenticated()
+    context['is_login'] = is_login
+    if is_login:
+        context['username'] = request.user.username
     return render(request, 'default/home.html', context)
 
