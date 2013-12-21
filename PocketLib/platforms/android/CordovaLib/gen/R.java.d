@@ -1,1 +1,1 @@
- : /home/sky/project/personal/weishuku/PocketLib/platforms/android/CordovaLib/bin/AndroidManifest.xml \
+ : /Users/davideuler/workspace/weishuku/PocketLib/platforms/android/CordovaLib/bin/AndroidManifest.xml \
