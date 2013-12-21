@@ -1,4 +1,12 @@
+book_info = {};
 
+function init_bookinfo() {
+	$('#J_bookinfo').innerHTML = 'Book info';
+	$('#J_bookinfo').innerHTML += 'Rating: ' + book_info.rating.average;
+	for (var i = 0; i < book_info.tags.length; ++i) {
+		$('#J_bookinfo').innerHTML += book_info.tags[i].title;
+	}
+}
 
 function myLogin() {
 	BASE_URL = "http://192.168.8.103:27080/weishuku";
@@ -47,4 +55,32 @@ function myLogin() {
 	
 	return false;
 	
+}
+
+
+function bookinfo(isbnno) {
+
+	var url='https://api.douban.com/v2/book/isbn/:'+isbnno
+	$.ajax({
+		type: 'POST',
+		url: 'https://api.douban.com/v2/book/isbn/:'+isbnno,
+		dataType: 'jsonp',
+		timeout: 10000,
+		data: {
+			'password': '',
+			'username': ''
+		},
+		success: function(rValue, status) {
+			alert('success');
+			//var obj = eval('('+rValue+')')
+			
+			book_info = rValue;
+			alert(book_info.price);
+			window.location="bookinfo.html";
+			//$('#J_bookinfo').innerHTML = '';
+		},
+		fail: function(e) {
+			alert('fail');
+		}
+	})
 }
