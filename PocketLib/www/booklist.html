@@ -24,14 +24,60 @@
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" >
         <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+		<script type="text/javascript" src="js/bootstrap.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
 		<script>
-			document.write('token:' + window.localStorage.getItem("token"));
+			document.write('Welcome, ' + window.localStorage.getItem("name") );
+			//'token:' + window.localStorage.getItem("token")
 		</script>
         <title>微书库</title>
     </head>
     <body>
         <h1>我的书库</h1>
+		<div id="main">
+			<div id="search" class="form-group">
+				<input type="text" id="keyword" class="input-small" value="" placeholder="输入你要找的书名" width="70%"> 
+				<input type="button" class="btn btn-info btn-sm" value="search" onclick="" width="20%">
+			</div>
+			
+			<div id="content">
+			    <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+			        <li class="active"><a href="#all" data-toggle="tab">所有图书</a></li>
+			        <li><a href="#my" data-toggle="tab">我的图书</a></li>
+			        <li><a href="#myborrowed" data-toggle="tab">已借图书</a></li>
+			        <li><a href="#message" data-toggle="tab">消息</a></li>
+			        <li><a href="#add" data-toggle="tab">添加图书</a></li>
+			    </ul>
+			    <div id="my-tab-content" class="tab-content">
+					
+			        <div class="tab-pane active" id="all" >
+			             <iframe src="allbooks.html"></iframe>
+			        </div>
+									
+			        <div class="tab-pane" id="my">
+						<iframe src="mybooks.html"></iframe>
+			        </div>
+			        <div class="tab-pane" id="myborrowed">
+			            <h1>已借图书</h1>
+			            <p>yellow yellow yellow yellow yellow</p>
+			        </div>
+			        <div class="tab-pane" id="message">
+			            <h1>我的消息</h1>
+			            <p>green green green green green</p>
+			        </div>
+			        <div class="tab-pane" id="add">
+			            <h1>添加图书</h1>
+			            <p>blue blue blue blue blue</p>
+			        </div>
+			    </div>
+			</div>
+			<script type="text/javascript">
+			    jQuery(document).ready(function ($) {
+			        $('#tabs').tab();
+			    });
+			</script>  
+		</div>
     </body>
 </html>

@@ -30,7 +30,7 @@ function myLogin() {
 				
 	            if (rValue.results.length == 1) {
 	                $('#J_status')[0].innerHTML = '登录成功';
-	                window.localStorage.setItem("userid", rValue.user_id);
+					window.localStorage.setItem('name', rValue.results[0].name);
 					window.localStorage.setItem("token", rValue.results[0]._id['$oid']);
 	                window.location = "booklist.html";
 	                return;
