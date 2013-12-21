@@ -16,15 +16,9 @@
 
     <!-- Custom styles for this template -->
     <link href="css/signin.css" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
-      <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
+        <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+        <script type="text/javascript" src="js/sha256.js"></script>
+		<script type="text/javascript" src="js/register.js"></script>
   </head>
 
   <body>
@@ -33,12 +27,14 @@
 
       <form class="form-signin" role="form">
         <h2 class="form-signin-heading">注册信息</h2>
-        <input type="text" class="form-control" placeholder="Email address" required autofocus>
-        <input type="password" class="form-control" placeholder="Password" required>
+        <input type="text" id="login" class="form-control" placeholder="Email address" required autofocus>
+		        <input type="text" id="name" class="form-control" placeholder="Nickname" required >
+        <input type="password" id="password" class="form-control" placeholder="Password" required>
         <label class="checkbox">
           <input type="checkbox" value="remember-me"> agress with...
         </label>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Registe</button>
+        <button class="btn btn-lg btn-primary btn-block" type="button" onclick="register();">Register</button>
+		<label id="message"></label>
       </form>
 
     </div> <!-- /container -->
