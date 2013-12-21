@@ -18,6 +18,7 @@ CREATE  TABLE IF NOT EXISTS `weishuku`.`User` (
   `first_login_date` TIMESTAMP NULL ,
   `last_login_date` TIMESTAMP NULL ,
   `phone` VARCHAR(45) NULL ,
+  `sha1pass` VARCHAR(200) NULL ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
 
@@ -67,14 +68,15 @@ CREATE  TABLE IF NOT EXISTS `weishuku`.`Book` (
   `author` VARCHAR(45) NULL ,
   `pubdate` VARCHAR(45) NULL ,
   `isPublic` VARCHAR(45) NULL ,
+  `imgurl` VARCHAR(200) NULL ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `weishuku`.`Borrowinfo`
+-- Table `weishuku`.`BorrowInfo`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `weishuku`.`Borrowinfo` (
+CREATE  TABLE IF NOT EXISTS `weishuku`.`BorrowInfo` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `userid` VARCHAR(45) NULL ,
   `bookid` VARCHAR(45) NULL ,
@@ -86,9 +88,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `weishuku`.`Booktag`
+-- Table `weishuku`.`BookTag`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `weishuku`.`Booktag` (
+CREATE  TABLE IF NOT EXISTS `weishuku`.`BookTag` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `bookid` VARCHAR(45) NULL ,
   `tagname` VARCHAR(45) NULL ,
