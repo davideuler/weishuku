@@ -17,3 +17,16 @@ def book_list(request):
     q = Book.objects.all()
     book_list = [(item.title,item.isbn) for item in q]
     return HttpResponse(json.dumps(book_list), content_type="application/json")
+
+def my_library(request):
+
+    pass
+
+def add_book(request):
+    pass
+
+def del_book(request):
+    pass
+
+def update_book(request):
+    pass
