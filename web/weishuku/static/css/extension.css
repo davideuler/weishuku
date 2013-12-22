@@ -1,0 +1,30 @@
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.navbar {
+  margin-bottom: 20px;
+}
+
+.book_img {
+    height: 200px;
+    weight: 150px;
+}
+
+.book_tile {
+    font-family:"Times New Roman", Times, serif;
+}
+
+.red_star {
+    color: red;
+}
+
+.white_star {
+    color: #fff;
+}
+
+.libray_book {
+    margin-bottom:20px;
+    margin-right:20px;
+}

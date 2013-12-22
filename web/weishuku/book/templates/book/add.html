@@ -1,0 +1,78 @@
+
+{% extends 'default/base.html' %}
+{% load staticfiles %}
+{% block content %}
+        <form action="/book/addbook/" method="post" class="form-signin"> {% csrf_token %}
+          <input id="url" name="url" class="span2" type="text" maxlength="200" style="width:550px;height:50px;"  placeholder="输入书籍的豆瓣链接">
+          <a class="btn btn-lg btn-primary" style="line-height: 1.5;"  role="button" onclick="$(this).closest('form').submit()">解析</a>
+        </form>
+{% if hasbook %}
+        <div class="col-md-12">
+            <h2>{{ title }} </h2>
+        </div>
+        <div class="col-md-2">
+            <img src="{{ images }}" class="img-polaroid book_img"> </img>
+        </div>
+        <div class="col-md-3">
+            {% for item in author %}
+                <div> 作者：{{ item }}   </div>
+            {% endfor %}
+            <div> 出版社：{{ publisher}}   </div>
+            <div> 出版日期：{{ pubdate }}   </div>
+            <div> 页数：{{ pages }}  </div>
+            <div> 价格：{{ price }}   </div>
+            <div> ISBN：{{ isbn10 }}   </div>
+            <div> 豆瓣URL：{{ url }}   </div>
+        </div>
+        <div class="col-md-3">
+            <div id="inner_rating">
+                内部评分：
+                <span class="glyphicon glyphicon-star red_star"></span>
+                <span class="glyphicon glyphicon-star red_star"></span>
+                <span class="glyphicon glyphicon-star-empty"></span>
+            </div> 
+            <div id="douban_rating">
+                豆瓣评分：
+                <span class="glyphicon glyphicon-star red_star"></span>
+                <span class="glyphicon glyphicon-star red_star"></span>
+                <span class="glyphicon glyphicon-star-empty"></span>
+            </div>  
+            <div id="jingdong_rating">
+                京东评分：
+                <span class="glyphicon glyphicon-star red_star"></span>
+                <span class="glyphicon glyphicon-star red_star"></span>
+                <span class="glyphicon glyphicon-star-empty"></span>
+            </div>  
+        </div>
+        <div class="col-md-12"> 
+            <br/>
+            <form action="/book/addbook/" method="post" class="form-signin"> {% csrf_token %}
+                <input type="hidden" id="bookid" name="bookid" value="{{bookid}}">
+                <button type="submit" class="btn btn-info btn-sm">收入书库</button>
+            </form>
+        </div>
+
+        <div class="col-md-8">
+            <br>
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#summary" data-toggle="tab">导言</a></li>
+              <li><a href="#author" data-toggle="tab">作者简介</a></li>
+              <li><a href="#catalog" data-toggle="tab">目录</a></li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <div class="tab-pane fade in active" id="summary">{{summary}}</div>
+              <div class="tab-pane fade" id="author">{{author_intro}}</div>
+              <div class="tab-pane fade" id="catalog">{{catalog}}</div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h3> 标签</h3>
+            {% for item in tags %}
+            <button type="button" class="btn btn-default btn-sm">{{ item }}</button>
+            {% endfor %}
+        </div>
+{% endif %}
+{% endblock %}
+

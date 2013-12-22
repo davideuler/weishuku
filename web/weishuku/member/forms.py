@@ -5,6 +5,7 @@ class LoginForm(forms.Form):
     account = forms.CharField(max_length=100)
     password = forms.CharField(max_length=100)
     remember = forms.BooleanField(required=False)
+    next =  forms.CharField(max_length=100)
 
 class RegisterForm(forms.Form):
     account = forms.CharField(max_length=100)

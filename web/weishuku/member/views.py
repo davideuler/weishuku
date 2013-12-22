@@ -13,20 +13,24 @@ def my_login(request):
             account = form.cleaned_data['account']
             password = form.cleaned_data['password']
             remember = form.cleaned_data['remember']
+            next = form.cleaned_data['next']
             user = authenticate(username=account, password=password)
             if user is not None:
                 login(request, user)
                 #print 'user of session:%s' % (request.user.is_authenticated())
                 #print 'user of name:%s ' % request.user.username
                 #return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-                return redirect('/', context)
+                return redirect(next, context)
             else:
                 context['form'] = LoginForm()
+                context['next'] = next
                 return render(request, 'member/login.html', context)
     else:
+        next = '/'
+        if 'next' in request.GET:
+            next = request.GET['next']
         context['form'] = LoginForm()
-        #request.session['next'] = request.META.get('HTTP_REFERER')
-        #print ' pre:%s ' % request.META.get('HTTP_REFERER')
+        context['next'] = next
     return render(request, 'member/login.html', context)
 
 def register(request):
