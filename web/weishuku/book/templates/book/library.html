@@ -25,5 +25,48 @@
           {% endfor %}
         </div>
         {% endif %}
+
+        {% if borrow_num > 0 %}
+        <div class="col-md-8">
+          <div class="col-md-7"> <font size=5> <b>我借到的书 </b> </font>  </div>
+          <div class="col-md-1">
+            <a href="{% url 'book:addbook' %}" class="btn btn-sm btn-info"  role="button">去还书》
+            </a>
+          </div>
+
+          <div class="col-md-12"> <hr/></div>
+          
+          {% for book in borrow_list %}
+            <div class="col-md-3 libray_book">
+              <a href="/book/{{ book.id }}">
+                <img src="{{book.imgurl}}" class="img-polaroid book_img"> </img>
+                <h4>{{ book.title }} </h4>
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if return_num > 0 %}
+        <div class="col-md-8">
+          <div class="col-md-7"> <font size=5> <b>我借出的书 </b> </font>  </div>
+          <div class="col-md-1">
+            <a href="{% url 'book:addbook' %}" class="btn btn-sm btn-info"  role="button">去催书》
+            </a>
+          </div>
+
+          <div class="col-md-12"> <hr/></div>
+          
+          {% for book in return_list %}
+            <div class="col-md-3 libray_book">
+              <a href="/book/{{ book.id }}">
+                <img src="{{book.imgurl}}" class="img-polaroid book_img"> </img>
+                <h4>{{ book.title }} </h4>
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+
 {% endblock %}
 

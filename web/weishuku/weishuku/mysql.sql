@@ -19,3 +19,15 @@ CREATE TABLE `Book` (
   `ImgURL` varchar(128) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `BorrowRel` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `BookID` int NOT NULL,
+  `Owner` int NOT NULL,
+  `Borrower` int NOT NULL,
+  `CreateDate` timestamp NOT NULL,
+  `DelDate` timestamp,
+  `Message` varchar(256) DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
