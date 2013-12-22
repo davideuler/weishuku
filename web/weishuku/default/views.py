@@ -4,6 +4,7 @@ from django.template import RequestContext, loader
 from django.shortcuts import render
 import json
 import urllib2
+from book.models import Book
 
 def index(request):
     context = dict()
@@ -12,10 +13,10 @@ def index(request):
     #for item in tag_data['results']:
     #    tag_list.append(item['name'])
     context['tag_list'] = ['美食','艺术']
-
     is_login = request.user.is_authenticated()
     context['is_login'] = is_login
     if is_login:
         context['username'] = request.user.username
+    context['book_list'] = [book for book in Book.objects.all()]
     return render(request, 'default/home.html', context)
 

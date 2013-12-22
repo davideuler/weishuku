@@ -2,8 +2,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext, loader
 from django.shortcuts import render, redirect
 from member.forms import LoginForm, RegisterForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 def my_login(request):
     context = dict()
@@ -33,6 +34,11 @@ def my_login(request):
         context['next'] = next
     return render(request, 'member/login.html', context)
 
+@login_required
+def my_logout(request):
+    logout(request)
+    return redirect('/')
+
 def register(request):
     context = dict()
     if request.method == 'POST':
@@ -52,3 +58,4 @@ def register(request):
     else:
         context['form'] = RegisterForm()
         return render(request, 'member/register.html', context)
+
