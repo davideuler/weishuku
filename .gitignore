@@ -11,6 +11,7 @@
 # generated files
 bin/
 PocketLib/platforms/android/CordovaLib/bin/
+PocketLib/platforms/android/assets/
 gen/
 
 # Ignore gradle files
