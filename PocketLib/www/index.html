@@ -5,7 +5,11 @@
         <meta name="format-detection" content="telephone=no" />
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
         <link rel="stylesheet" type="text/css" href="css/index.css" />
+		
+	    <link href="css/bootstrap.css" rel="stylesheet">
+		
         <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
         <script type="text/javascript" src="js/sha256.js"></script>
 		<script type="text/javascript" src="js/main.js"></script>
@@ -17,10 +21,10 @@
         <div class="app">
             <h1>微书库</h1>
             <div id="deviceready" class="blink">
-        <form >
-		  <p><input type="text" id="login" value="" placeholder="Email"></p>
-		  <p><input type="password" id="password" value="" placeholder="Password"></p>
-          <p><input type="button" value="ssLogin" onclick="myLogin();"></p>
+        <form class="form-signin">
+		  <p><input type="text" id="login" value="" class="form-control" placeholder="Email"></p>
+		  <p><input type="password" id="password" class="form-control" value="" placeholder="Password"></p>
+          <p><input type="button" value="Login" class="form-control" onclick="myLogin();"></p>
 		  <p><label id="J_status" ></label></p>
           <a href="register.html">registe</a>
         </form>
