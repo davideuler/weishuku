@@ -57,7 +57,7 @@ CREATE  TABLE IF NOT EXISTS `weishuku`.`Book` (
   `isbn` VARCHAR(45) NOT NULL ,
   `url` VARCHAR(45) NULL ,
   `isPersonal` VARCHAR(45) NOT NULL ,
-  `ownerid` VARCHAR(45) NOT NULL COMMENT 'when the book is personal, the owner id is a user id. when the book is not personal, the owner id is group id.' ,
+  `ownername` VARCHAR(45) NOT NULL COMMENT 'when the book is personal, the owner name is a user name. when the book is not personal, the owner name is group name.' ,
   `summary` VARCHAR(45) NULL ,
   `price` VARCHAR(45) NULL ,
   `numRaters` VARCHAR(45) NULL ,
