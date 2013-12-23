@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name = "format-detection" content = "telephone=no"/>
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width;" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>添加图书</title>
+        <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+        <style type="text/css">
+            #bookinfo{display:block;width: 500px; height: 100px;margin: 0 auto;margin-top:10px;height:auto!important;min-height:100px;display:none;}
+            #J_summary{width:490px;height:auto!important;min-height:50px;maxlength:20;} 
+        </style>
+    </head>
+    <body onload="onBodyLoad()" style="background: url(img/ScanditSDKDemo-Splash.png) no-repeat;background-size: 100%;background-color: #000000">
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+        <script type="text/javascript" src="js/addbook.js"></script>
+        
+        <script type="text/javascript">
+            function onBodyLoad()
+            {
+                document.getElementById("bookinfo").style.display="none";
+                document.getElementById("barcode").style.display="block";
+                document.addEventListener("deviceready", onDeviceReady, false);
+            }
+
+        function success(resultArray) {
+                document.getElementById("bookinfo").style.display="block";
+                document.getElementById("barcode").style.display="none";
+            //alert("Scanned " + resultArray[0] + " code: " + resultArray[1]);
+
+                getBookDetail(resultArray[0]);
+            }
+
+            function failure(error) {
+                alert("Failed: " + error);
+            }
+
+            function scan() {
+                // See below for all available options. 
+                cordova.exec(success, failure, "ScanditSDK", "scan",
+                             ["aEoHxmn+EeOfHdbEUuC5lLQvt8tbsi429HJHx6qZG00",
+                              {"beep": true,
+                              "1DScanning" : true,
+                              "2DScanning" : true}]);
+            }
+
+            app.initialize();
+            </script>
+
+        <script type="text/javascript">
+            function getIsbn(){
+                document.getElementById("isbn_manual").style.display="none";
+                var isbn = document.getElementById('isbn_text').value;
+                getBookDetail(isbn);
+            }
+        </script>
+        <div id="barcode" align="center" valign="center">
+            <input id = "isbn_text" type="text" value="" style="margin-top: 230px; width: 100px; height: 30px; font-size: 1em"/>
+            <input type="button" value="查找" onclick="getIsbn()" style="margin-top: 230px; width: 100px; height: 30px; font-size: 1em"/> 
+            <input type="button" value="扫描" onclick="scan()" style="margin-top: 230px; width: 100px; height: 30px; font-size: 1em"/>  
+        </div>
+       
+        <div id="bookinfo" style="border:#FF0000 solid 2px;">
+            <form id="bk_detail">
+
+            </form>
+        </div>
+    </body>
+</html>
