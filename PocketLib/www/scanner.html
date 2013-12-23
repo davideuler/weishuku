@@ -9,8 +9,8 @@
         <title>添加图书</title>
         <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
         <style type="text/css">
-            #bookinfo{display:block;width: 500px; height: 100px;margin: 0 auto;margin-top:10px;height:auto!important;min-height:100px;display:none;}
-            #J_summary{width:490px;height:auto!important;min-height:50px;maxlength:20;} 
+            #bookinfo{display:block;width: 100%; height: 50%;margin: 0 auto;margin-top:5%;height:auto!important;min-height:50%;display:none;}
+            #J_summary{width:100%;height:auto!important;min-height:10%;maxlength:20;} 
         </style>
     </head>
     <body onload="onBodyLoad()" style="background: url(img/ScanditSDKDemo-Splash.png) no-repeat;background-size: 100%;background-color: #000000">
@@ -53,15 +53,15 @@
 
         <script type="text/javascript">
             function getIsbn(){
-                document.getElementById("isbn_manual").style.display="none";
+                document.getElementById("barcode").style.display="none";
                 var isbn = document.getElementById('isbn_text').value;
                 getBookDetail(isbn);
             }
         </script>
-        <div id="barcode" align="center" valign="center">
-            <input id = "isbn_text" type="text" value="" style="margin-top: 230px; width: 100px; height: 30px; font-size: 1em"/>
-            <input type="button" value="查找" onclick="getIsbn()" style="margin-top: 230px; width: 100px; height: 30px; font-size: 1em"/> 
-            <input type="button" value="扫描" onclick="scan()" style="margin-top: 230px; width: 100px; height: 30px; font-size: 1em"/>  
+        <div id="barcode" align="center" valign="center" style="margin-top:2%">
+            <input id = "isbn_text" type="text" value="" style="font-size: 1em"/>
+            <input type="button" value="查找" onclick="getIsbn()" style=" font-size: 1em"/> 
+            <input type="button" value="扫描" onclick="scan()" style="font-size: 1em"/>  
         </div>
        
         <div id="bookinfo" style="border:#FF0000 solid 2px;">

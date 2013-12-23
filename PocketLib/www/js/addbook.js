@@ -2,7 +2,7 @@
             function addBook()
             {
                 BASE_URL = "http://192.168.8.103:27080/weishuku";
-                var dbusrname = window.localStorage.getItem("username");
+                var dbusrname = window.localStorage.getItem("name");
                 var dbbookname = document.getElementById('J_title').value;
                 var dbprice = document.getElementById('J_price').value;
                 var dbrating = document.getElementById('J_rating').value;
@@ -18,13 +18,20 @@
                 var dbisbn10 = document.getElementById('J_isbn10').value;
                 var dbisbn13 = document.getElementById('J_isbn13').value;
                 var dburl = document.getElementById('J_douurl').value;
+				var position = document.getElementById('J_position').value;
                 var dbsummary = $('#J_summary').val();
                 var dbsummary_o = document.getElementById('J_summary').value;
+				var borrowable = "1";
                 
-                var dboption ="0";
-                if(document.getElementById('J_option').checked)
+                var dboption ="1";
+                if(!document.getElementById('J_option').checked)
                 {
-                    dboption = "1"
+                    dboption = "0"
+                } 
+				
+                if(!document.getElementById('J_borrowable').checked)
+                {
+                    dboption = "0"
                 } 
               
                 var d = new Date();
@@ -34,7 +41,7 @@
 
                 var dstr = curr_year + "-" + curr_month + "-" + curr_date;
     
-                j = { title: dbbookname, isbn: ''+dbisbn13, isPersonal:dboption, created_date:dstr,ownerid:dbusrname,author:dbauthor,imgurl:dbimgulr,averageRate:dbrating,price:dbprice,url:dburl    };
+                j = { title: dbbookname, isbn: ''+dbisbn13, isPersonal:dboption, created_date:dstr,ownername:dbusrname,author:dbauthor,imgurl:dbimgulr,averageRate:dbrating,price:dbprice,url:dburl,position:position,borrowable:borrowable};
                 jsonstr = JSON.stringify(j);
                 $.ajax({
                     type: 'POST',
@@ -340,11 +347,36 @@
                         bkoption.type="button";
                         bkoption.value="是否私有";
                         optionCell.appendChild(bkoption);  
-                        optionCell.appendChild(option_text); 
-
+                        optionCell.appendChild(option_text);      
+						
+                        var borrowable_text = document.createElement("input");
+                        var bowoption = document.createElement("input");
+                        borrowable_text.id = "J_borrowable" 
+                        borrowable_text.type = "checkbox";  
+                        borrowable_text.name = "option"; 
+						borrowable_text.checked = true; 
+                        borrowable_text.class="check";
+                        bowoption.type="button";
+                        bowoption.value="是否可以外借";
+                        optionCell.appendChild(bowoption);  
+                        optionCell.appendChild(borrowable_text); 
+						
                         ninethRow.appendChild(dourlCell); 
                         ninethRow.appendChild(optionCell);
-                        tblBody.appendChild(ninethRow);                                               
+						tblBody.appendChild(ninethRow);   
+						
+						
+                        var position_text = document.createElement("input");
+                        var position = document.createElement("input");
+                        position_text.id = "J_position" 
+                        position_text.type = "text";  
+                        position_text.name = "position";  
+                        position_text.class="check";
+                        position.type="button";
+                        position.value="图书位置";
+                        
+                        bookform.appendChild(position);
+						bookform.appendChild(position_text);          
 
 
                         var summary_text = document.createElement("textarea");
@@ -366,6 +398,8 @@
                         submit_text.value="添加";
                         submit_text.onclick=function(){addBook()};
                         bookform.appendChild(submit_text);
+						
+                       
                     },
                     error: function(e) {
                         alert("isbn does not exits");

@@ -31,12 +31,15 @@
 		<script>
 			document.write('Welcome, ' + window.localStorage.getItem("name") );
 			//'token:' + window.localStorage.getItem("token")
+		    function resizeIframe(obj) {
+		       obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+		     }
 		</script>
         <title>微书库</title>
     </head>
-    <body>
+    <body height="100%">
         <h1>我的书库</h1>
-		<div id="main">
+		<div id="main" >
 			<div id="search" class="form-group">
 				<input type="text" id="keyword" class="input-small" value="" placeholder="输入你要找的书名" width="70%"> 
 				<input type="button" class="btn btn-info btn-sm" value="search" onclick="" width="20%">
@@ -53,11 +56,11 @@
 			    <div id="my-tab-content" class="tab-content">
 					
 			        <div class="tab-pane active" id="all" >
-			             <iframe src="allbooks.html"></iframe>
+			             <iframe src="allbooks.html" width="100%" onload='resizeIframe(this);'></iframe>
 			        </div>
 									
 			        <div class="tab-pane" id="my">
-						<iframe src="mybooks.html"></iframe>
+						<iframe src="mybooks.html" width="100%" ></iframe>
 			        </div>
 			        <div class="tab-pane" id="myborrowed">
 			            <h1>已借图书</h1>
@@ -68,8 +71,7 @@
 			            <p>green green green green green</p>
 			        </div>
 			        <div class="tab-pane" id="add">
-			            <h1>添加图书</h1>
-			            <p>blue blue blue blue blue</p>
+			            <iframe src="scanner.html"  width="100%" "></iframe>
 			        </div>
 			    </div>
 			</div>

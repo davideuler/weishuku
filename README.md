@@ -22,6 +22,14 @@ sudo npm install -g cordova
 
 /usr/local/share/npm/lib/node_modules/cordova/bin/cordova build ios
 
+/usr/local/share/npm/lib/node_modules/cordova/bin/cordova run android
+
+Your need to add android sdk tools and platform-tools to PATH:
+in bash:
+export PATH=$PATH:/data/program/adt-bundle-mac-x86_64/sdk/platform-tools/:/data/program/adt-bundle-mac-x86_64/sdk/tools/
+in fish shell:
+set PATH $PATH /data/program/adt-bundle-mac-x86_64/sdk/platform-tools/ /data/program/adt-bundle-mac-x86_64/sdk/tools/
+
 4.web :
 
 
