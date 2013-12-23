@@ -4,13 +4,6 @@ function encodeCriteria(jsonCriteria){
 	return "criteria=" + encodeURI(json);
 }
 
-function toDisplayKey(k){
-	return k=="title" || k == "author" || k=="ownername";
-}
-
-function toDisplayKeyInMyBooks(k){
-	return k=="title" || k == "author" || k=="borrordate" || k=="borrorbyuserid";
-}
 
 function allbooks() {
 	BASE_URL = "http://192.168.8.103:27080/weishuku";
@@ -25,15 +18,12 @@ function allbooks() {
 	        timeout: 5000,
 	        success: function (rValue, status) {
 	            if (rValue.results.length >= 1) {
-					var tbl_body = '<tr><td>author</td><td>title</td><td>owner</td></tr>';
+					var tbl_body = '<tr><td width="50%">title</td><td width="10%">author</td><td width="10%">owner</td></tr>';
+					
 					$.each(rValue.results, function() {
 					    var tbl_row = "";
-					    $.each(this, function(k , v) {
-							if (toDisplayKey(k)){
-								if(k=="ownerid") v = v.substring(0,v.indexOf('@'));
-					        	tbl_row += "<td>"+v+"</td>";
-							}
-					    })
+						tbl_row = "<td>" + this["title"] + "</td><td>" + this["author"] + "</td><td>" + this["ownername"] + "</td>";
+
 					    tbl_body += "<tr>"+tbl_row+"</tr>";                 
 					});
 					$("#display").html(tbl_body);
@@ -65,16 +55,12 @@ function mybooks() {
 	        timeout: 5000,
 	        success: function (rValue, status) {
 	            if (rValue.results.length >= 1) {
-					var tbl_body = '<tr><td>author</td><td>title</td><td>borrowdate</td></tr>';
+					var tbl_body = '<tr><td width="50%">title</td><td width="10%">author</td><td width="10%">borrowdate</td></tr>';
 					$.each(rValue.results, function() {
 					    var tbl_row = "";
-					    $.each(this, function(k , v) {
-							if (toDisplayKeyInMyBooks(k)){
-								// if(k=="ownerid") v = v.substring(0,v.indexOf('@'));
-					        	tbl_row += "<td>"+v+"</td>";
-							}
-					    })
-					    tbl_body += "<tr>"+tbl_row+"</tr>";                 
+						tbl_row = "<td>" + this["title"] + "</td><td>" + this["author"] + "</td><td>" + this["borrowdate"] + "</td>";
+				
+						tbl_body += "<tr>"+tbl_row+"</tr>";                 
 					});
 					$("#display").html(tbl_body);
 
