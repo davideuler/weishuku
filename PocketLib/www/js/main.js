@@ -1,5 +1,3 @@
-book_info = {};
-
 function init_bookinfo() {
 	$('#J_bookinfo').innerHTML = 'Book info';
 	$('#J_bookinfo').innerHTML += 'Rating: ' + book_info.rating.average;

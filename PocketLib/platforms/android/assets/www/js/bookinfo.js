@@ -1,5 +1,6 @@
 function bookinfo(isbnno) {
 
+	var url='https://api.douban.com/v2/book/isbn/:'+isbnno
 	$.ajax({
 		type: 'POST',
 		url: 'https://api.douban.com/v2/book/isbn/:'+isbnno,
@@ -13,7 +14,9 @@ function bookinfo(isbnno) {
 			alert('success');
 			//var obj = eval('('+rValue+')')
 			alert(rValue.price);
-			window.location="bookinfo.html?book="+rValue
+			book_info = rValue;
+			window.location="bookinfo.html";
+			//$('#J_bookinfo').innerHTML = '';
 		},
 		fail: function(e) {
 			alert('fail');

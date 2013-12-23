@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name = "format-detection" content = "telephone=no"/>
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>Scandit SDK</title>
+        <style type="text/css">
+            #bookinfo{display:block;width: 500px; height: 100px;margin: 0 auto;margin-top:10px;height:auto!important;min-height:100px;display:none;}
+            #J_summary{width:450px;height:auto!important;min-height:50px;maxlength:20;} 
+            .ordinary{font-style:italic;} 
+        </style>
+    </head>
+    <body  style="background-color: #000000">
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+        <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+        <script type="text/javascript" src="js/addbook.js"></script>
+
+        <script type="text/javascript">
+            function getIsbn(){
+                document.getElementById("barcode").style.display="none";
+                var isbn = document.getElementById('isbn_text').value;
+                getBookDetail(isbn);
+            }
+        </script>
+        <div id="barcode" align="center" valign="center">
+            <input id = "isbn_text" type="text" value="" style="margin-top: 230px; width: 100px; height: 30px; font-size: 1em"/>
+            <input type="button" value="查找" onclick="getIsbn()" style="margin-top: 230px; width: 100px; height: 30px; font-size: 1em"/> 
+            <input type="button" value="扫描" onclick="scan()" style="margin-top: 230px; width: 100px; height: 30px; font-size: 1em"/>  
+        </div>
+
+        <div id="bookinfo" style="border:#FF0000 solid 2px;">
+            <form id="bk_detail">
+
+            </form>
+        </div>
+    </body>
+</html>

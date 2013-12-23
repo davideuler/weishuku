@@ -1,55 +1,38 @@
 <!DOCTYPE html>
 <html>
-    <!--
-     #
-     # Licensed to the Apache Software Foundation (ASF) under one
-     # or more contributor license agreements.  See the NOTICE file
-     # distributed with this work for additional information
-     # regarding copyright ownership.  The ASF licenses this file
-     # to you under the Apache License, Version 2.0 (the
-     # "License"); you may not use this file except in compliance
-     # with the License.  You may obtain a copy of the License at
-     #
-     # http://www.apache.org/licenses/LICENSE-2.0
-     #
-     # Unless required by applicable law or agreed to in writing,
-     # software distributed under the License is distributed on an
-     # "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     #  KIND, either express or implied.  See the License for the
-     # specific language governing permissions and limitations
-     # under the License.
-     #
-     -->
+
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name = "format-detection" content = "telephone=no"/>
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width;" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Scandit SDK</title>
+        <title>添加图书</title>
+        <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+        <style type="text/css">
+            #bookinfo{display:block;width: 500px; height: 100px;margin: 0 auto;margin-top:10px;height:auto!important;min-height:100px;display:none;}
+            #J_summary{width:490px;height:auto!important;min-height:50px;maxlength:20;} 
+        </style>
     </head>
     <body onload="onBodyLoad()" style="background: url(img/ScanditSDKDemo-Splash.png) no-repeat;background-size: 100%;background-color: #000000">
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
+        <script type="text/javascript" src="js/addbook.js"></script>
+        
         <script type="text/javascript">
             function onBodyLoad()
             {
+                document.getElementById("bookinfo").style.display="none";
+                document.getElementById("barcode").style.display="block";
                 document.addEventListener("deviceready", onDeviceReady, false);
             }
 
         function success(resultArray) {
+                document.getElementById("bookinfo").style.display="block";
+                document.getElementById("barcode").style.display="none";
+            //alert("Scanned " + resultArray[0] + " code: " + resultArray[1]);
 
-        alert("Scanned " + resultArray[0] + " code: " + resultArray[1]);
-
-                // NOTE: Scandit SDK Phonegap Plugin Versions 1.* for iOS report
-                // the scanning result as a concatenated string.
-                // Starting with version 2.0.0, the Scandit SDK Phonegap
-                // Plugin for iOS reports the result as an array
-                // identical to the way the Scandit SDK plugin for Android reports results.
-
-                // If you are running the Scandit SDK Phonegap Plugin Version 1.* for iOS,
-                // use the following approach to generate a result array from the string result returned:
-                // resultArray = result.split("|");
+                getBookDetail(resultArray[0]);
             }
 
             function failure(error) {
@@ -68,8 +51,23 @@
             app.initialize();
             </script>
 
-        <div align="center" valign="center">
-            <input type="button" value="scan" onclick="scan()" style="margin-top: 230px; width: 100px; height: 30px; font-size: 1em"/>
+        <script type="text/javascript">
+            function getIsbn(){
+                document.getElementById("isbn_manual").style.display="none";
+                var isbn = document.getElementById('isbn_text').value;
+                getBookDetail(isbn);
+            }
+        </script>
+        <div id="barcode" align="center" valign="center">
+            <input id = "isbn_text" type="text" value="" style="margin-top: 230px; width: 100px; height: 30px; font-size: 1em"/>
+            <input type="button" value="查找" onclick="getIsbn()" style="margin-top: 230px; width: 100px; height: 30px; font-size: 1em"/> 
+            <input type="button" value="扫描" onclick="scan()" style="margin-top: 230px; width: 100px; height: 30px; font-size: 1em"/>  
+        </div>
+       
+        <div id="bookinfo" style="border:#FF0000 solid 2px;">
+            <form id="bk_detail">
+
+            </form>
         </div>
     </body>
 </html>
