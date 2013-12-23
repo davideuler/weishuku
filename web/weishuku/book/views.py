@@ -122,11 +122,18 @@ def borrow_book(request):
         rel.borrower = borrower
         rel.createdate = datetime.datetime.now()
         rel.save()
-        return redirect('/book/library')
-
-
+        return redirect('/book/library/')
 
 @login_required
-def return_book(request):
-    pass
+def return_book(request, id):
+    context = dict()
+    context['is_login'] = request.user.is_authenticated()
+    if request.user.is_authenticated():
+        context['username'] = request.user.username
+    q = Borrowrel.objects.filter(bookid=id, borrower=request.user.id)    
+    q[0].delete()
+    return redirect('/book/library/')
+
+
+
 

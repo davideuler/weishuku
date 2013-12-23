@@ -29,10 +29,6 @@
         {% if borrow_num > 0 %}
         <div class="col-md-8">
           <div class="col-md-7"> <font size=5> <b>我借到的书 </b> </font>  </div>
-          <div class="col-md-1">
-            <a href="{% url 'book:addbook' %}" class="btn btn-sm btn-info"  role="button">去还书》
-            </a>
-          </div>
 
           <div class="col-md-12"> <hr/></div>
           
@@ -42,6 +38,10 @@
                 <img src="{{book.imgurl}}" class="img-polaroid book_img"> </img>
                 <h4>{{ book.title }} </h4>
               </a>
+            <div class="col-md-1">
+                <a href="/book/return/{{book.id}}" class="btn btn-sm btn-info"  role="button">去还书》
+            </a>
+          </div>
             </div>
           {% endfor %}
         </div>
