@@ -34,6 +34,11 @@
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
             app.initialize();
+			jQuery(document).ready(function ($) {
+				var username =  window.localStorage.getItem("username") ;
+				$('#login').val(username);
+			});
+			
         </script>
     </body>
 </html>
