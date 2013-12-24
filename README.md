@@ -33,7 +33,15 @@ set PATH $PATH /data/program/adt-bundle-mac-x86_64/sdk/platform-tools/ /data/pro
 4.web :
 
 
+5.mongodb
 
-其他：
+ensure unique index:
+db.book.ensureIndex( { "title": 1, "ownername":1 }, { unique: true } )
+db.user.ensureIndex( { "email": 1}, { unique: true } )
+db.user.ensureIndex( { "name": 1}, { unique: true } )
+
+db.book.ensureIndex( { "title": 1, "ownername":1 }, { unique: true, dropDups:true})
+
+6.其他：
 豆瓣通过ISBN查找图书信息的Rest Api:
 https://api.douban.com/v2/book/isbn/:9787544826440

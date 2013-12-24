@@ -15,7 +15,7 @@
                 var dbpages = document.getElementById('J_pages').value;
                 var dbcatalog = document.getElementById('J_catalog').value;
                 var dbpublisher = document.getElementById('J_publisher').value;
-                var dbisbn10 = document.getElementById('J_isbn10').value;
+                var count = document.getElementById('J_count').value;
                 var dbisbn13 = document.getElementById('J_isbn13').value;
                 var dburl = document.getElementById('J_douurl').value;
 				var position = document.getElementById('J_position').value;
@@ -40,8 +40,15 @@
                 var curr_year = d.getFullYear();
 
                 var dstr = curr_year + "-" + curr_month + "-" + curr_date;
+				
+				var borrowableCount = 0;
+				
+				if(borrowable==1)
+				{
+					borrowableCount = count
+				}
     
-                j = { title: dbbookname, isbn: ''+dbisbn13, isPersonal:dboption, created_date:dstr,ownername:dbusrname,author:dbauthor,imgurl:dbimgulr,averageRate:dbrating,price:dbprice,url:dburl,position:position,borrowable:borrowable};
+                j = { title: dbbookname, isbn: ''+dbisbn13, isPersonal:dboption, created_date:dstr,ownername:dbusrname,author:dbauthor,imgurl:dbimgulr,averageRate:dbrating,price:dbprice,url:dburl,position:position,borrowable:borrowable,count:count,borrowableCount:borrowableCount};
                 jsonstr = JSON.stringify(j);
                 $.ajax({
                     type: 'POST',
@@ -52,9 +59,12 @@
 
                     success: function(value,status)
                     {
-                        alert('add successfully');
+					    document.getElementById("message").innerHTML = "added successfully!";
+                        //alert('add successfully');
                         document.getElementById("bookinfo").style.display="none";
                         document.getElementById("barcode").style.display="block";
+						document.getElementById("isbn_text").value = "";
+                        document.getElementById("isbn_text").focus();
 
                     },
                     error: function(status)
@@ -295,20 +305,8 @@
                         tblBody.appendChild(seventhRow);
 
                         var eighthRow = document.createElement("tr");
-                        var isbn10Cell = document.createElement("td");
+                        var bkCountCell = document.createElement("td");
                         var isbn13Cell = document.createElement("td");                                                  
-
-                        var isbn10_text = document.createElement("input");
-                        var bkisbn10 = document.createElement("input"); 
-                        isbn10_text.id = "J_isbn10";
-                        isbn10_text.type = "text";  
-                        isbn10_text.name = "isbn10";  
-                        isbn10_text.value = rValue.isbn10
-                        isbn10_text.class="ordinary";
-                        bkisbn10.type="button";
-                        bkisbn10.value="isbn10";
-                        isbn10Cell.appendChild(bkisbn10);
-                        isbn10Cell.appendChild(isbn10_text);
                         
                         var isbn13_text = document.createElement("input");
                         var bkisbn13 = document.createElement("input");
@@ -322,8 +320,20 @@
                         isbn13Cell.appendChild(bkisbn13);  
                         isbn13Cell.appendChild(isbn13_text);
 
-                        eighthRow.appendChild(isbn10Cell); 
+                        var count_text = document.createElement("input");
+                        var lblCount = document.createElement("input"); 
+                        count_text.id = "J_count";
+                        count_text.type = "text";  
+                        count_text.name = "count";  
+                        count_text.value = 1
+                        count_text.class="ordinary";
+                        lblCount.type="button";
+                        lblCount.value="数目";
+                        bkCountCell.appendChild(lblCount);
+                        bkCountCell.appendChild(count_text);
+						
                         eighthRow.appendChild(isbn13Cell);
+                        eighthRow.appendChild(bkCountCell); 
                         tblBody.appendChild(eighthRow);
 
                         var ninethRow = document.createElement("tr");
