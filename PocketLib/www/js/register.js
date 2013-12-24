@@ -14,13 +14,7 @@ function register() {
 	
 	var sha256 = CryptoJS.SHA256(password);
 	
-    var d = new Date();
-    var curr_date = d.getDate();
-    var curr_month = d.getMonth() + 1; //Months are zero based
-    var curr_year = d.getFullYear();
-	var d = curr_year + "-" + curr_month + "-" + curr_date;
-	
-	j = {email : username, password: ''+sha256, name:name, createdDate:d };
+	j = {email : username, password: ''+sha256, name:name, createdDate:curDateStr()};
 	jsonstr = JSON.stringify(j);
 	
 	$('#message')[0].innerHTML=jsonstr;

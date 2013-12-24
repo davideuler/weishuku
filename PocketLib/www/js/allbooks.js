@@ -7,8 +7,37 @@ function encodeCriteria(jsonCriteria){
 }
 
 function borrow(isbn,title,ownername){
+	var name = window.localStorage.getItem("name");
 	
-	alert('<'+title+'>的借书请求已发送至:'+ownername);
+	j = {username:name, isbn:isbn, bookTitle:title, borrowReqDate:curDateStr(), ownername:ownername };
+	jsonstr = JSON.stringify(j);
+	
+	$('#J_status')[0].innerHTML=jsonstr;
+	
+	var booktitle = title;
+	
+	$.ajax({
+	        type: 'POST',
+			data: 'docs=[' + jsonstr + ']',
+	        url: BASE_URL + '/borrowinfo/_insert',
+	        dataType: 'json',        //jsonp 支持跨域的访问，可以本地测试login.html（使用远程登陆服务)
+	        timeout: 5000,
+	        success: function (rValue, status) {
+	            if (rValue.oids.length == 1) {
+	                
+	                $('#J_status')[0].innerHTML='<'+booktitle+'>的借书请求已发送至:'+ownername;
+	                return;
+	            } else{
+	                $('#J_status')[0].innerHTML = '*发送借书请求失败，请联系管理员';
+				}
+
+	        },
+	        error: function (e) {
+	            $('#J_status')[0].innerHTML = '*请求失败，请稍后再试';
+
+	        }
+	    });
+		
 }
 
 function allbooks() {

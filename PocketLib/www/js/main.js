@@ -8,6 +8,15 @@ function init_bookinfo() {
 	}
 }
 
+function curDateStr(){
+    var d = new Date();
+    var curr_date = d.getDate();
+    var curr_month = d.getMonth() + 1; //Months are zero based
+    var curr_year = d.getFullYear();
+	var d = curr_year + "-" + curr_month + "-" + curr_date;
+	return d;
+}
+
 function myLogin() {
 
     var username = $('#login')[0].value;

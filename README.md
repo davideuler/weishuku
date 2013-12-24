@@ -40,7 +40,8 @@ db.book.ensureIndex( { "isbn": 1, "ownername":1 }, { unique: true } )
 db.user.ensureIndex( { "email": 1}, { unique: true } )
 db.user.ensureIndex( { "name": 1}, { unique: true } )
 
-db.book.ensureIndex( { "isbn": 1, "ownername":1 }, { unique: true, dropDups:true})
+db.book.ensureIndex( { isbn: 1, ownername:1 }, { unique: true, dropDups:true})
+db.borrowinfo.ensureIndex( { isbn: 1, ownername:1, username:1 }, { unique: true, dropDups:true})
 
 6.其他：
 豆瓣通过ISBN查找图书信息的Rest Api:
