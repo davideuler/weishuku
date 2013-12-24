@@ -78,6 +78,18 @@ h1 {
     text-align:center;
 }
 
+.frame {
+    overflow:hidden;
+    overflow-x:hidden;
+    overflow-y:hidden;
+    height:70%;
+    width:100%;
+    position:absolute;
+    top:30%;
+    left:0px;
+    right:0px;
+    bottom:0px;
+}
 .event {
     border-radius:4px;
     -webkit-border-radius:4px;
