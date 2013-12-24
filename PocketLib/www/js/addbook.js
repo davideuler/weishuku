@@ -82,6 +82,9 @@
                         var tblBody = document.createElement("tbody");
                         tbl.appendChild(tblBody);
 
+						//clear content
+						document.getElementById("bk_detail").innerHTML="";
+						
                         var bookform = document.getElementById("bk_detail");
                         bookform.appendChild(tbl);
                         var htmlbr = document.createElement("br");
@@ -393,8 +396,8 @@
 
                         var submit_text = document.createElement("input");
                         submit_text.type = "button";  
-                        submit_text.name = "submittion";  
-                        submit_text.class="button";
+                        submit_text.name = "submition";  
+                        submit_text.className="button btn btn-md btn-info";
                         submit_text.value="添加";
                         submit_text.onclick=function(){addBook()};
                         bookform.appendChild(submit_text);

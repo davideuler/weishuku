@@ -6,6 +6,7 @@
         <meta name = "format-detection" content = "telephone=no"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="css/index.css" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" >
         <title>添加图书</title>
         <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
 
@@ -32,10 +33,8 @@
                 
             }
 
-        function success(resultArray) {
+        	function success(resultArray) {
                 document.getElementById("bookinfo").style.display="block";
-                document.getElementById("barcode").style.display="none";
-            //alert("Scanned " + resultArray[0] + " code: " + resultArray[1]);
 
                 getBookDetail(resultArray[0]);
             }
@@ -58,15 +57,15 @@
 
         <script type="text/javascript">
             function getIsbn(){
-                document.getElementById("barcode").style.display="none";
+                //document.getElementById("barcode").style.display="none";
                 var isbn = document.getElementById('isbn_text').value;
                 getBookDetail(isbn);
             }
         </script>
         <div id="barcode" align="center" valign="center" style="margin-top:2%">
-            <input id = "isbn_text" type="text" value="" style="font-size: 1em"/>
-            <input type="button" value="查找" onclick="getIsbn()" style=" font-size: 1em"/> 
-            <input id="btnScan" type="button" value="扫描" onclick="scan()" style="font-size: 1em"/>  
+            <input id = "isbn_text" class="input-sm" class="text" type="text" value="" style="font-size: 1em"/>
+            <input type="button" class="btn btn-md btn-info" value="查找" onclick="getIsbn()" style=" font-size: 1em"/> 
+            <input id="btnScan" class="btn btn-md btn-info" type="button" value="扫描" onclick="scan()" style="font-size: 1em"/>  
         </div>
        
         <div id="bookinfo" style="border:#FF0000 solid 2px;">

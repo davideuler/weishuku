@@ -29,9 +29,11 @@
 		<script type="text/javascript" src="js/bootstrap.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
 		<script>
-			var logoutStr = ' <a href="index.html" onclick="logout()">logout</a>';
-			document.write('Welcome, ' + window.localStorage.getItem("name") + logoutStr );
-
+			function load(){
+				var logoutStr = ' <a href="index.html" onclick="logout()">logout</a>';
+				document.getElementById("top").innerHTML='欢迎来到微书库, ' + window.localStorage.getItem("name") + logoutStr ;
+			}
+			
 			function logout(){
 				window.localStorage.setItem("token","");
 			}
@@ -39,12 +41,14 @@
 		</script>
         <title>微书库</title>
     </head>
-    <body height="100%">
-        <h1>我的书库</h1>
+    <body height="100%" onload="load()">
+		<div id="top">
+			<br>
+		</div>
 		<div id="main" >
 			<div id="search" class="form-group">
-				<input type="text" id="keyword" class="input-small" value="" placeholder="输入你要找的书名" width="70%"> 
-				<input type="button" class="btn btn-info btn-sm" value="search" onclick="" width="20%">
+				<input type="text" id="keyword" class="input-sm" value="" placeholder="输入你要找的书名" width="70%"> 
+				<input type="button" class="btn btn-md btn-info" value="search" onclick="" width="20%">
 			</div>
 			
 			<div id="content">
@@ -66,15 +70,11 @@
 						<iframe class="frame" id="iframe-1" src="mybooks.html" width="100%" ></iframe>
 			        </div>
 			        <div class="tab-pane" id="myborrowed">
-						<iframe class="frame" id="iframe-2" src="" width="100%" >
-			            <h1>已借图书</h1>
-			            <p>yellow yellow yellow yellow yellow</p>
+						<iframe class="frame" id="iframe-2" src="borrowed.html" width="100%" >
 						</iframe>
 			        </div>
 			        <div class="tab-pane" id="message">
-						<iframe class="frame" id="iframe-3" src="" width="100%" >
-			            <h1>我的消息</h1>
-			            <p>green green green green green</p>
+						<iframe class="frame" id="iframe-3" src="messages.html" width="100%" >
 						</iframe>
 			        </div>
 			        <div class="tab-pane" id="add">
@@ -88,8 +88,13 @@
 			        $('#tabs').tab();
 					var tabs = $('#tabs')[0].children;
 					for (var i = 0; i < tabs.length; ++i) {
+						(function() {
 							var myI = i;
-							tabs[i].onclick = function() {$('#iframe-' + myI)[0].src = $('#iframe-' + myI)[0].src;};
+							tabs[i].onclick = function() {
+								//$('#iframe-' + myI)[0].contentDocument.location.reload(true);
+								$('#iframe-' + myI)[0].src = $('#iframe-' + myI)[0].src;
+							};
+						})();
 					}
 			    });
 			</script>  
