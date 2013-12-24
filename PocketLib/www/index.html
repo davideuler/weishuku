@@ -14,7 +14,17 @@
         <script type="text/javascript" src="js/sha256.js"></script>
 		<script type="text/javascript" src="js/main.js"></script>
         <script type="text/javascript" src="js/bookinfo.js"></script>
-		
+		<script type="text/javascript">
+			function searchKeyPress(e)
+		    {
+		        // look for window.event in case event isn't passed in
+		        if (typeof e == 'undefined' && window.event) { e = window.event; }
+		        if (e.keyCode == 13)
+		        {
+		            document.getElementById('btnLogin').click();
+		        }
+		    }
+		</script>
         <title>微书库</title>
     </head>
     <body>
@@ -22,9 +32,9 @@
             <h1>微书库</h1>
             <div id="deviceready" class="blink">
         <form class="form-signin">
-		  <p><input type="text" id="login" value="" class="form-control" placeholder="Email"></p>
-		  <p><input type="password" id="password" class="form-control" value="" placeholder="Password"></p>
-          <p><input type="button" value="Login" class="form-control" onclick="myLogin();"></p>
+		  <p><input type="text" id="login" value="" class="form-control" placeholder="Email" autofocus></p>
+		  <p><input type="password" id="password" class="form-control" value="" placeholder="Password" onkeypress="searchKeyPress(event);"></p>
+          <p><input id="btnLogin" type="button" value="Login" class="form-control" onclick="myLogin();"></p>
 		  <p><label id="J_status" ></label></p>
           <a href="register.html">registe</a>
         </form>
@@ -38,6 +48,7 @@
 				var username =  window.localStorage.getItem("username") ;
 				$('#login').val(username);
 			});
+			
 			
         </script>
     </body>
