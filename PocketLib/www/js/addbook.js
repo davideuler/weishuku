@@ -11,9 +11,9 @@
                 var dbags = document.getElementById('J_tags').value;
                 var dbimgulr = document.getElementById('J_img').value;
                 var dbbinding = document.getElementById('J_binding').value;
-                var dbtranslator = document.getElementById('J_trans').value;
+                //var dbtranslator = document.getElementById('J_trans').value;
                 var dbpages = document.getElementById('J_pages').value;
-                var dbcatalog = document.getElementById('J_catalog').value;
+                //var dbcatalog = document.getElementById('J_catalog').value;
                 var dbpublisher = document.getElementById('J_publisher').value;
                 var count = document.getElementById('J_count').value;
                 var dbisbn13 = document.getElementById('J_isbn13').value;
@@ -48,7 +48,7 @@
 					borrowableCount = count
 				}
     
-                j = { title: dbbookname, isbn: ''+dbisbn13, isPersonal:dboption, created_date:dstr,ownername:dbusrname,author:dbauthor,imgurl:dbimgulr,averageRate:dbrating,price:dbprice,url:dburl,position:position,borrowable:borrowable,count:count,borrowableCount:borrowableCount};
+                j = { title: dbbookname, isbn: ''+dbisbn13, isPersonal:dboption, created_date:dstr,ownername:dbusrname,author:dbauthor,imgurl:dbimgulr,averageRate:dbrating,price:dbprice,url:dburl,position:position,borrowable:borrowable,count:count,borrowableCount:borrowableCount,publisher:dbpublisher};
                 jsonstr = JSON.stringify(j);
                 $.ajax({
                     type: 'POST',
@@ -98,6 +98,7 @@
                         var bookform = document.getElementById("bk_detail");
                         bookform.appendChild(tbl);
                         var htmlbr = document.createElement("br");
+						
                         //var obj = eval('('+rValue+')')
                         var img_obj = document.createElement("img");
                         img_obj.id = "J_imgshow";
@@ -106,9 +107,18 @@
                         var imgRow = document.createElement("tr");
                         var imgCell = document.createElement("td");
                         imgCell.appendChild(img_obj); 
-                        imgRow.appendChild(imgCell);
-                        tblBody.appendChild(imgRow);
+                        imgRow.appendChild(imgCell);// add image cell                        
 
+
+                        var submit_text = document.createElement("input");
+                        submit_text.type = "button";  
+                        submit_text.name = "submition";  
+                        submit_text.className="button btn btn-md btn-info";
+                        submit_text.value="添加";
+                        submit_text.onclick=function(){addBook()};
+						imgRow.appendChild(submit_text);
+
+                        tblBody.appendChild(imgRow);//add 
 
                         var secondRow = document.createElement("tr");
                         var titleCell = document.createElement("td");
@@ -240,37 +250,37 @@
                         fifthRow.appendChild(bindingCell);
                         tblBody.appendChild(fifthRow); 
 
-                        var sixthRow = document.createElement("tr");
-                        var transCell = document.createElement("td");
-                        var catagoryCell = document.createElement("td"); 
-
-                        var trans_text = document.createElement("input");
-                        var bktrans = document.createElement("input");
-                        trans_text.id = "J_trans" 
-                        trans_text.type = "text";  
-                        trans_text.name = "translator";  
-                        trans_text.value = rValue.translator;
-                        trans_text.class="ordinary";
-                        bktrans.type="button";
-                        bktrans.value="翻译";
-                        transCell.appendChild(bktrans);                          
-                        transCell.appendChild(trans_text);
-
-                        var catalog_text = document.createElement("input");
-                        var bkcatalog = document.createElement("input");
-                        catalog_text.id = "J_catalog";
-                        catalog_text.type = "text";  
-                        catalog_text.name = "catalog";  
-                        catalog_text.value = rValue.catalog;
-                        catalog_text.class="ordinary";
-                        bkcatalog.type="button";
-                        bkcatalog.value="目录";
-                        catagoryCell.appendChild(bkcatalog);                        
-                        catagoryCell.appendChild(catalog_text);
-
-                        sixthRow.appendChild(transCell); 
-                        sixthRow.appendChild(catagoryCell);
-                        tblBody.appendChild(sixthRow); 
+                        // var sixthRow = document.createElement("tr");
+            //             var transCell = document.createElement("td");
+            //             var catagoryCell = document.createElement("td"); 
+            // 
+            //             var trans_text = document.createElement("input");
+            //             var bktrans = document.createElement("input");
+            //             trans_text.id = "J_trans" 
+            //             trans_text.type = "text";  
+            //             trans_text.name = "translator";  
+            //             trans_text.value = rValue.translator;
+            //             trans_text.class="ordinary";
+            //             bktrans.type="button";
+            //             bktrans.value="翻译";
+            //             transCell.appendChild(bktrans);                          
+            //             transCell.appendChild(trans_text);
+            // 
+            //             var catalog_text = document.createElement("input");
+            //             var bkcatalog = document.createElement("input");
+            //             catalog_text.id = "J_catalog";
+            //             catalog_text.type = "text";  
+            //             catalog_text.name = "catalog";  
+            //             catalog_text.value = rValue.catalog;
+            //             catalog_text.class="ordinary";
+            //             bkcatalog.type="button";
+            //             bkcatalog.value="目录";
+            //             catagoryCell.appendChild(bkcatalog);                        
+            //             catagoryCell.appendChild(catalog_text);
+            // 
+            //             sixthRow.appendChild(transCell); 
+            //             sixthRow.appendChild(catagoryCell);
+            //             tblBody.appendChild(sixthRow); 
 
                         var seventhRow = document.createElement("tr");
                         var pageCell = document.createElement("td");
@@ -403,14 +413,6 @@
                         bookform.appendChild(bksummary); 
                         summary_text.innerText=rValue.summary; 
                         bookform.appendChild(summary_text);
-
-                        var submit_text = document.createElement("input");
-                        submit_text.type = "button";  
-                        submit_text.name = "submition";  
-                        submit_text.className="button btn btn-md btn-info";
-                        submit_text.value="添加";
-                        submit_text.onclick=function(){addBook()};
-                        bookform.appendChild(submit_text);
 						
                        
                     },
