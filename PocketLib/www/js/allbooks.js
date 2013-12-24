@@ -41,6 +41,10 @@ function confirmBorrow(isbn,title,username,borrowReqDate){
 	        success: function (rValue, status) {
 	            if (rValue.ok == 1) {
 	                $('#J_status')[0].innerHTML='"'+booktitle+'"的借书请求已确认:'+ownername;
+					
+					// cri = {isbn:isbn, title:title, ownername:ownername};
+					// j = {borrowDate:curDateStr()};					 
+						
 					window.location.reload();
 	                return;
 	            } else{
@@ -75,7 +79,6 @@ function borrow(isbn,title,ownername){
 	        timeout: 5000,
 	        success: function (rValue, status) {
 	            if (rValue.oids.length == 1) {
-	                
 	                $('#J_status')[0].innerHTML='"'+booktitle+'"的借书请求已发送至:'+ownername;
 	                return;
 	            } else{
@@ -121,6 +124,59 @@ function messages() {
 
 						if(this["borrowDate"] != null){
 							tbl_row += "<td>return</td>";
+						}
+						else
+						{
+							tbl_row += "<td></td>";
+						}
+						tbl_row += "<td style='display:none'>" + this["isbn"] + "</td>";
+
+					    tbl_body += "<tr>"+tbl_row+"</tr>";                 
+					});
+					$("#display").html(tbl_body);
+
+	            } else{
+	                $('#contentlist')[0].innerHTML = '*没有查询到数据，请联系管理员';
+				}
+
+	        },
+	        error: function (e) {
+	            $('#contentlist')[0].innerHTML = '*请求失败，请稍后再试';
+
+	        }
+	    });
+}
+
+function showMyBorrowedBooks(){
+    username = window.localStorage.getItem("name");
+	
+	j = {username:username};
+	
+	$.ajax({
+	        type: 'GET',
+	        url: BASE_URL + '/borrowinfo/_find?batch_size=100&' + encodeCriteria(j),
+	        dataType: 'json',        //jsonp 支持跨域的访问，可以本地测试login.html（使用远程登陆服务)
+	        timeout: 5000,
+	        success: function (rValue, status) {
+	            if (rValue.results.length >= 1) {
+					var tbl_body = '<tr><td width="50%">title</td><td width="10%">username</td><td width="10%">reqdate</td>';
+					tbl_body += '<td width="10%">borrowDate</td><td width="10%">return</td><td width="0%" style="display:none"></td>';
+					tbl_body += '</tr>';
+					
+					$.each(rValue.results, function() {
+					    var tbl_row = "";
+						tbl_row = "<td>" + this["bookTitle"] + "</td><td>" + this["username"] + "</td><td>" + this["borrowReqDate"] + "</td>";
+						
+						if(this["borrowDate"]==null){
+							tbl_row += "<td><label class='label'>待确认</label></td>";				
+						}
+						else{
+							tbl_row += "<td>" + this["borrowDate"] + "</td>";							
+						}
+						
+
+						if(this["borrowDate"] != null){
+							tbl_row += "<td>续借</td>";
 						}
 						else
 						{
