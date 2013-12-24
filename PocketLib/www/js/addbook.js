@@ -48,7 +48,7 @@
 					borrowableCount = count
 				}
     
-                j = { title: dbbookname, isbn: ''+dbisbn13, isPersonal:dboption, created_date:dstr,ownername:dbusrname,author:dbauthor,imgurl:dbimgulr,averageRate:dbrating,price:dbprice,url:dburl,position:position,borrowable:borrowable,count:count,borrowableCount:borrowableCount,publisher:dbpublisher};
+                j = { title: dbbookname, isbn: ''+dbisbn13, isPersonal:dboption, createdDate:dstr,ownername:dbusrname,author:dbauthor,imgurl:dbimgulr,averageRate:dbrating,price:dbprice,url:dburl,position:position,borrowable:borrowable,count:count,borrowableCount:borrowableCount,publisher:dbpublisher};
                 jsonstr = JSON.stringify(j);
                 $.ajax({
                     type: 'POST',

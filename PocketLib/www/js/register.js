@@ -21,7 +21,7 @@ function register() {
     var curr_year = d.getFullYear();
 	var d = curr_year + "-" + curr_month + "-" + curr_date;
 	
-	j = {email : username, password: ''+sha256, name:name, created_date:d };
+	j = {email : username, password: ''+sha256, name:name, createdDate:d };
 	jsonstr = JSON.stringify(j);
 	
 	$('#message')[0].innerHTML=jsonstr;
