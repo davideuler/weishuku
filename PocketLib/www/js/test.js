@@ -1,7 +1,6 @@
 
             function addBook()
             {
-                BASE_URL = "http://192.168.8.103:27080/weishuku";
                 var dbusrname = window.localStorage.getItem("username");
                 var dbbookname = document.getElementById('J_title').value;
                 var dbprice = document.getElementById('J_price').value;

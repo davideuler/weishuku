@@ -1,3 +1,5 @@
+var BASE_URL = "http://192.168.8.103:27080/weishuku";
+
 function init_bookinfo() {
 	$('#J_bookinfo').innerHTML = 'Book info';
 	$('#J_bookinfo').innerHTML += 'Rating: ' + book_info.rating.average;
@@ -7,7 +9,6 @@ function init_bookinfo() {
 }
 
 function myLogin() {
-	BASE_URL = "http://192.168.8.103:27080/weishuku";
 
     var username = $('#login')[0].value;
     var password = $('#password')[0].value;

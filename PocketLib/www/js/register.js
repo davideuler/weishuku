@@ -1,7 +1,6 @@
 
 	
 function register() {
-	BASE_URL = "http://192.168.8.103:27080/weishuku";
 
     var username = $('#login')[0].value;
     var password = $('#password')[0].value;
