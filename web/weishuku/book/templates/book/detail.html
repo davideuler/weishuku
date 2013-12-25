@@ -44,7 +44,9 @@
                 {% if is_own %}
                 <button type="button" class="btn btn-info btn-sm">我有本同样的！</button>
                 {% else %}
-                <button type="submit" class="btn btn-info btn-sm">我要借》</button>
+                <input id="message" name="message" class="hidden" type="text" maxlength="100" style="width:550px;" placeholder="说点好听的呗。。。" />
+                <button id='borrowBtn' type="button" class="btn btn-info btn-sm">我要借》</button>
+                <button id='submitBtn' type="submit" class="btn btn-info btn-sm hidden">提交申请</button>
                 {% endif %}
             </form>
         </div>
@@ -70,4 +72,15 @@
             <button type="button" class="btn btn-default btn-sm">{{ item }}</button>
             {% endfor %}
         </div>
+
+    <script src="{{STATIC_URL}}js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#borrowBtn").click(function(){
+                $("#message").attr("class", "show form-control");
+                $("#borrowBtn").attr("class", "hidden");
+                $("#submitBtn").attr("class", "btn btn-info btn-sm show");
+            }); 
+        });
+    </script>
 {% endblock %}

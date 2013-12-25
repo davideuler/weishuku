@@ -39,8 +39,13 @@
                 <h4>{{ book.title }} </h4>
               </a>
             <div class="col-md-1">
-                <a href="/book/return/{{book.id}}" class="btn btn-sm btn-info"  role="button">去还书》
-            </a>
+              {% if book.status == 0 %}
+                <a href="/book/return/{{book.id}}" class="btn btn-sm btn-info"  role="button">等待消息</a>
+              {% elif book.status == 1 %}
+                <a href="/book/return/{{book.id}}" class="btn btn-sm btn-info"  role="button">哎，不借！</a>
+              {% else %}
+                <a href="/book/return/{{book.id}}" class="btn btn-sm btn-info"  role="button">去还书》</a>
+              {% endif %}
           </div>
             </div>
           {% endfor %}
@@ -63,6 +68,14 @@
                 <img src="{{book.imgurl}}" class="img-polaroid book_img"> </img>
                 <h4>{{ book.title }} </h4>
               </a>
+              {% if book.status == 0 %}
+              <a href="/book/approve_borrow/{{book.id}}" class="btn btn-sm btn-info">同意</a>
+              <a href="/book/refuse_borrow/{{book.id}}" class="btn btn-sm btn-info">不同意</a>
+              {% elif book.status == 1 %}
+                已拒绝借出
+              {% else %}
+                已同意借出
+              {% endif %}
             </div>
           {% endfor %}
         </div>

@@ -125,8 +125,8 @@ INSTALLED_APPS = (
     'default',
     'tag',
     'member',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
+    'message',
+    'activity',
 )
 
 #login URL

@@ -1,7 +1,7 @@
 from django.db import models
 
 class Book(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=128L)
     publisher = models.CharField(max_length=128L, blank=True)
     isbn = models.CharField(max_length=13L)
@@ -27,13 +27,12 @@ class Book(models.Model):
 
 
 class Borrowrel(models.Model):
-    id = models.AutoField(primary_key=True, db_column='Id') # Field name made lowercase.
-    bookid = models.IntegerField(db_column='BookID') # Field name made lowercase.
+    id = models.IntegerField(primary_key=True, db_column='Id') # Field name made lowercase.
     owner = models.IntegerField(db_column='Owner') # Field name made lowercase.
     borrower = models.IntegerField(db_column='Borrower') # Field name made lowercase.
-    status = models.IntegerField(db_column='Status') # Field name made lowercase.
     createdate = models.DateTimeField(db_column='CreateDate') # Field name made lowercase.
     deldate = models.DateTimeField(db_column='DelDate') # Field name made lowercase.
-    messageid = models.IntegerField(db_column='MessageID') # Field name made lowercase.
+    bookid = models.IntegerField(db_column='BookID')
+    message = models.CharField(max_length=256L, db_column='Message', blank=True) # Field name made lowercase.
     class Meta:
         db_table = 'BorrowRel'

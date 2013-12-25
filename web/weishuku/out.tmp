@@ -32,16 +32,42 @@ class Book(models.Model):
     class Meta:
         db_table = 'Book'
 
+class Booktag(models.Model):
+    id = models.IntegerField(primary_key=True, db_column='Id') # Field name made lowercase.
+    bookid = models.IntegerField(db_column='BookID') # Field name made lowercase.
+    tagid = models.IntegerField(db_column='TagID') # Field name made lowercase.
+    class Meta:
+        db_table = 'BookTag'
+
 class Borrowrel(models.Model):
     id = models.IntegerField(primary_key=True, db_column='Id') # Field name made lowercase.
     bookid = models.IntegerField(db_column='BookID') # Field name made lowercase.
     owner = models.IntegerField(db_column='Owner') # Field name made lowercase.
     borrower = models.IntegerField(db_column='Borrower') # Field name made lowercase.
+    status = models.IntegerField(db_column='Status') # Field name made lowercase.
     createdate = models.DateTimeField(db_column='CreateDate') # Field name made lowercase.
     deldate = models.DateTimeField(db_column='DelDate') # Field name made lowercase.
-    message = models.CharField(max_length=256L, db_column='Message', blank=True) # Field name made lowercase.
+    messageid = models.CharField(max_length=256L, db_column='MessageID', blank=True) # Field name made lowercase.
     class Meta:
         db_table = 'BorrowRel'
+
+class Message(models.Model):
+    id = models.IntegerField(primary_key=True, db_column='Id') # Field name made lowercase.
+    originid = models.IntegerField(db_column='OriginID') # Field name made lowercase.
+    targetid = models.IntegerField(db_column='TargetID') # Field name made lowercase.
+    status = models.IntegerField(db_column='Status') # Field name made lowercase.
+    createdate = models.DateTimeField(db_column='CreateDate') # Field name made lowercase.
+    content = models.CharField(max_length=256L, db_column='Content') # Field name made lowercase.
+    handler = models.CharField(max_length=256L, db_column='Handler') # Field name made lowercase.
+    class Meta:
+        db_table = 'Message'
+
+class Tag(models.Model):
+    id = models.IntegerField(primary_key=True, db_column='Id') # Field name made lowercase.
+    createdate = models.DateTimeField(db_column='CreateDate') # Field name made lowercase.
+    value = models.CharField(max_length=256L, db_column='Value') # Field name made lowercase.
+    class Meta:
+        db_table = 'Tag'
 
 class AuthGroup(models.Model):
     id = models.IntegerField(primary_key=True)

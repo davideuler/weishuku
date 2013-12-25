@@ -26,8 +26,38 @@ CREATE TABLE `BorrowRel` (
   `BookID` int NOT NULL,
   `Owner` int NOT NULL,
   `Borrower` int NOT NULL,
+  `Status` int NOT NULL, #0: not read; 1: not approved; 2: approved; 
   `CreateDate` timestamp NOT NULL,
   `DelDate` timestamp,
-  `Message` varchar(256) DEFAULT NULL,
+  `MessageID` int DEFAULT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `Message` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `OriginID` int NOT NULL,
+  `TargetID` int NOT NULL,
+  `Status` int NOT NULL, #0: not read; 1: read; 
+  `CreateDate` timestamp NOT NULL,
+  `Content` varchar(256) NOT NULL,
+  `Handler` varchar(256) NOT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `Tag` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `CreateDate` timestamp NOT NULL,
+  `Value` varchar(256) NOT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `BookTag` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `BookID` int NOT NULL,
+  `TagID` int NOT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+
