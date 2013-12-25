@@ -35,7 +35,7 @@ function myLogin() {
 	j = {email : username, password: ''+sha256};
 	sha256pass = JSON.stringify(j);
 	
-	$('#J_status')[0].innerHTML=sha256pass;
+	//$('#J_status')[0].innerHTML=sha256pass;
 	
 	$.ajax({
 	        type: 'GET',		
