@@ -103,6 +103,7 @@ function borrow(isbn,title,ownername){
 	        success: function (rValue, status) {
 	            if (rValue.oids.length == 1) {
 	                $('#J_status')[0].innerHTML='"'+booktitle+'"的借书请求已发送至:'+ownername;
+					// alert('"'+booktitle+'"的借书请求已发送至:'+ownername);
 	                return;
 	            } else{
 	                $('#J_status')[0].innerHTML = '*发送借书请求失败，请联系管理员';
@@ -244,7 +245,7 @@ function allbooks() {
 						tbl_row = "<td>" + this["title"] + "</td><td>" + this["ownername"] + "</td>";
 						tbl_row += "<td>" + this["borrowableCount"] + "</td>";
 
-						if(this["borrowableCount"]>0 && !(this["ownername"].toLowerCase()==username.toLowerCase())){
+						if(this["borrowableCount"]>0 && !((this["ownername"]+'').toLowerCase()==username.toLowerCase())){
 							tbl_row += "<td><input type='button' class='btn btn-sm btn-info' value='Borrow' onclick=\"borrow(" + this["isbn"] + ",'"+ this["title"] + "','" + this["ownername"]+ "');\"></input></td>";
 						}
 						else if(this["ownername"].toLowerCase()!=username.toLowerCase()){

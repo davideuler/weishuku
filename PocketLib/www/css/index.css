@@ -80,9 +80,9 @@ h1 {
 
 .frame {
     overflow:hidden;
-    overflow-x:hidden;
-    overflow-y:hidden;
-    height:70%;
+    overflow-x:scroll;
+    overflow-y:scroll;
+    height:100%;
     width:100%;
     position:absolute;
     top:25%;
