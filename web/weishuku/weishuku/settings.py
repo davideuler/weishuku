@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os
 
 DEBUG = True
@@ -123,9 +124,13 @@ INSTALLED_APPS = (
     'book',
     'default',
     'tag',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
+    'member',
+    'message',
+    'activity',
 )
+
+#login URL
+LOGIN_URL = '/member/login/'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

@@ -1,0 +1,85 @@
+
+{% extends 'default/base.html' %}
+{% load staticfiles %}
+{% block content %}
+        {% if book_num == 0 %}
+          你的书库中还没有书，赶快去添加一些吧！
+          <a href="{% url 'book:addbook' %}" class="btn btn-lg btn-primary" style="line-height: 1.5;"  role="button">添加书籍</a>
+        {% else %}
+        <div class="col-md-8">
+          <div class="col-md-7"> <font size=5> <b>我的书库 </b> </font>  </div>
+          <div class="col-md-1">
+            <a href="{% url 'book:addbook' %}" class="btn btn-sm btn-info"  role="button">添加更多书籍》
+            </a>
+          </div>
+
+          <div class="col-md-12"> <hr/></div>
+          
+          {% for book in book_list %}
+            <div class="col-md-3 libray_book">
+              <a href="/book/{{ book.id }}">
+                <img src="{{book.imgurl}}" class="img-polaroid book_img"> </img>
+                <h4>{{ book.title }} </h4>
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if borrow_num > 0 %}
+        <div class="col-md-8">
+          <div class="col-md-7"> <font size=5> <b>我借到的书 </b> </font>  </div>
+
+          <div class="col-md-12"> <hr/></div>
+          
+          {% for book in borrow_list %}
+            <div class="col-md-3 libray_book">
+              <a href="/book/{{ book.id }}">
+                <img src="{{book.imgurl}}" class="img-polaroid book_img"> </img>
+                <h4>{{ book.title }} </h4>
+              </a>
+            <div class="col-md-1">
+              {% if book.status == 0 %}
+                <a href="/book/return/{{book.id}}" class="btn btn-sm btn-info"  role="button">等待消息</a>
+              {% elif book.status == 1 %}
+                <a href="/book/return/{{book.id}}" class="btn btn-sm btn-info"  role="button">哎，不借！</a>
+              {% else %}
+                <a href="/book/return/{{book.id}}" class="btn btn-sm btn-info"  role="button">去还书》</a>
+              {% endif %}
+          </div>
+            </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if return_num > 0 %}
+        <div class="col-md-8">
+          <div class="col-md-7"> <font size=5> <b>我借出的书 </b> </font>  </div>
+          <div class="col-md-1">
+            <a href="{% url 'book:addbook' %}" class="btn btn-sm btn-info"  role="button">去催书》
+            </a>
+          </div>
+
+          <div class="col-md-12"> <hr/></div>
+          
+          {% for book in return_list %}
+            <div class="col-md-3 libray_book">
+              <a href="/book/{{ book.id }}">
+                <img src="{{book.imgurl}}" class="img-polaroid book_img"> </img>
+                <h4>{{ book.title }} </h4>
+              </a>
+              {% if book.status == 0 %}
+              <a href="/book/approve_borrow/{{book.id}}" class="btn btn-sm btn-info">同意</a>
+              <a href="/book/refuse_borrow/{{book.id}}" class="btn btn-sm btn-info">不同意</a>
+              {% elif book.status == 1 %}
+                已拒绝借出
+              {% else %}
+                已同意借出
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+{% endblock %}
+

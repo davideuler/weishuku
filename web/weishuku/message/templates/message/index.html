@@ -1,0 +1,36 @@
+
+{% extends 'default/base.html' %}
+{% load staticfiles %}
+{% block content %}
+        <div class="col-md-8">
+            <h2>借阅消息</h2>
+            <table class="table">
+              <tr><th>时间</th> <th>状态</th>  <th>发起人</th> <th>所在的组</th>  <th>口信</th> <th></th> </tr>
+            {% for msg in msg_list %}
+              <tr>
+                <td>{{msg.createdate}}</td>
+                <td>
+                    {% if msg.status == 1 %}
+                        已处理
+                    {% else %}
+                        未处理
+                    {% endif %}
+                </td>
+                <td>{{msg.username}}</td>
+                <td>{{msg.groupname}}</td>
+                <td>{{msg.content}}</td> 
+
+                <td> 
+                {% if msg.status == 0 %}
+                    <a href="/message/handle_msg/{{msg.id}}" class="btn btn-sm btn-info"  role="button">去处理</a>
+                {% else %}
+                    <a href="/message/handle_msg/{{msg.id}}" class="btn btn-sm btn-info" disabled="true"  role="button">去处理</a>
+                {% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+            </table>
+        </div>
+
+{% endblock %}
+

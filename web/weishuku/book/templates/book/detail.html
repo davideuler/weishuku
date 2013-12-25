@@ -1,0 +1,86 @@
+
+{% extends 'default/base.html' %}
+{% load staticfiles %}
+{% block content %}
+        <div class="col-md-12">
+            <h2>{{ book.title }} </h2>
+        </div>
+        <div class="col-md-2">
+            <img src="{{ book.imgurl }}" class="img-polaroid book_img"> </img>
+        </div>
+        <div class="col-md-3">
+            <div> 作者：{{ book.author }}   </div>
+            <div> 出版社：{{ book.publisher}}   </div>
+            <div> 出版日期：{{ book.pubdate }}   </div>
+            <div> 页数：{{ book.pages }}  </div>
+            <div> 价格：{{ book.price }}   </div>
+            <div> ISBN：{{ book.isbn }}   </div>
+            <div> 豆瓣URL：{{ book.url }}   </div>
+        </div>
+        <div class="col-md-3">
+            <div id="inner_rating">
+                内部评分：
+                <span class="glyphicon glyphicon-star red_star"></span>
+                <span class="glyphicon glyphicon-star red_star"></span>
+                <span class="glyphicon glyphicon-star-empty"></span>
+            </div> 
+            <div id="douban_rating">
+                豆瓣评分：
+                <span class="glyphicon glyphicon-star red_star"></span>
+                <span class="glyphicon glyphicon-star red_star"></span>
+                <span class="glyphicon glyphicon-star-empty"></span>
+            </div>  
+            <div id="jingdong_rating">
+                京东评分：
+                <span class="glyphicon glyphicon-star red_star"></span>
+                <span class="glyphicon glyphicon-star red_star"></span>
+                <span class="glyphicon glyphicon-star-empty"></span>
+            </div>  
+        </div>
+        <div class="col-md-12"> 
+            <br/>
+            <form action="/book/borrow/" method="post" class="form-signin"> {% csrf_token %}
+                <input type="hidden" id="bookid" name="bookid" value="{{book.id}}">
+                {% if is_own %}
+                <button type="button" class="btn btn-info btn-sm">我有本同样的！</button>
+                {% else %}
+                <input id="message" name="message" class="hidden" type="text" maxlength="100" style="width:550px;" placeholder="说点好听的呗。。。" />
+                <button id='borrowBtn' type="button" class="btn btn-info btn-sm">我要借》</button>
+                <button id='submitBtn' type="submit" class="btn btn-info btn-sm hidden">提交申请</button>
+                {% endif %}
+            </form>
+        </div>
+
+        <div class="col-md-8">
+            <br>
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#summary" data-toggle="tab">导言</a></li>
+              <li><a href="#author" data-toggle="tab">作者简介</a></li>
+              <li><a href="#catalog" data-toggle="tab">目录</a></li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <div class="tab-pane fade in active" id="summary">{{book.summary}}</div>
+              <div class="tab-pane fade" id="author">{{book.author_intro}}</div>
+              <div class="tab-pane fade" id="catalog">{{book.catalog}}</div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h3> 标签</h3>
+            {% for item in tags %}
+            <button type="button" class="btn btn-default btn-sm">{{ item }}</button>
+            {% endfor %}
+        </div>
+
+    <script src="{{STATIC_URL}}js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#borrowBtn").click(function(){
+                $("#message").attr("class", "show form-control");
+                $("#borrowBtn").attr("class", "hidden");
+                $("#submitBtn").attr("class", "btn btn-info btn-sm show");
+            }); 
+        });
+    </script>
+{% endblock %}

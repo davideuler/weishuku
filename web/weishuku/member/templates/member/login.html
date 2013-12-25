@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bootstrap 101 Template</title>
+    {% load staticfiles %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="{{STATIC_URL}}css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{STATIC_URL}}css/signin.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <form action="/member/login/" method="post" class="form-signin"> {% csrf_token %}
+        {{ form.account.errors }}
+        {{ form.password.errors }}
+        {{ form.remember.errors }}
+        <h2 class="form-signin-heading">亲，我们又见面了！</h2>
+        <input id="id_account" name="account" type="text" class="form-control" placeholder="邮件地址" required autofocus>
+        <input id="id_password" name="password" type="password" class="form-control" placeholder="密码" required>
+        <label class="checkbox">
+          <input id="id_remember" type="checkbox" value="remember-me"> 记住我
+        </label>
+        <input type="hidden" id="id_next" name="next" value="{{next}}">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">登陆</button>
+      </form>
+    </div><!-- /container -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="{{STATIC_URL}}js/jquery-1.10.2.min.js"></script>
+    <script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+  </body>
+</html>
