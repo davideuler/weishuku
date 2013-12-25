@@ -49,7 +49,7 @@ function confirmBorrow(isbn,title,username,borrowReqDate){
 					//    }
 					// )
 					cri = {isbn:''+isbn , ownername:ownername};
-					j = {"$set":{"borrowDate":curDateStr()},"$inc":{"count":-1}};					 
+					j = {"$set":{"borrowDate":curDateStr()},"$inc":{"borrowableCount":-1}};					 
 					
 					$.ajax({
 					        type: 'POST',
@@ -285,10 +285,22 @@ function mybooks() {
 	        timeout: 5000,
 	        success: function (rValue, status) {
 	            if (rValue.results.length >= 1) {
-					var tbl_body = '<tr><td width="50%">title</td><td width="10%">author</td><td width="10%">borrowdate</td></tr>';
+					var tbl_body = '<tr><td width="50%">title</td><td width="10%">author</td><td width="10%">borrowdate</td><td width="10%">borrowableCount</td></tr>';
 					$.each(rValue.results, function() {
 					    var tbl_row = "";
-						tbl_row = "<td>" + this["title"] + "</td><td>" + this["author"] + "</td><td>" + this["borrowdate"] + "</td>";
+						var d = this["borrowDate"];
+						if(!d && this["borrowableCount"]>0)	{
+							d="可借";
+						}
+						else if(this["isPersonal"]=='1'){
+							d="私有";
+						}
+						var auth = this["author"];
+						if(auth.length>8)
+						{
+							auth = auth.substring(0,9)+'...';
+						}
+						tbl_row = "<td>" + this["title"] + "</td><td>" + auth + "</td><td>" + d + "</td><td>" + this["borrowableCount"] + "</td>";
 				
 						tbl_body += "<tr>"+tbl_row+"</tr>";                 
 					});

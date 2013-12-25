@@ -10,7 +10,7 @@
         <title>添加图书</title>
         <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
     </head>
-    <body onload="onBodyLoad()" style="background: url(img/ScanditSDKDemo-Splash.png) no-repeat;background-size: 100%;background-color: #000000">
+    <body onload="onBodyLoad()" style="background: url(img/ScanditSDKDemo-Splash.png) no-repeat;background-size: 100%;background-color: #000000" onkeydown="searchKeyPress(event);">
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
@@ -69,6 +69,11 @@
 			        {
 			            document.getElementById('btnGetBook').click();
 			        }
+					else if (e.keyCode == 65 && e.ctrlKey &&document.getElementById("bookinfo").style.display=="block") 
+					{
+						//alert("Ctrl+A");
+						document.getElementById('btnAdd').click();
+					} 
 			    }
 		
             function getIsbn(){

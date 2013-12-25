@@ -44,7 +44,7 @@
 				
 				if(borrowable==1)
 				{
-					borrowableCount = count
+					borrowableCount = count;
 				}
     
                 j = { title: dbbookname, isbn: ''+dbisbn13, isPersonal:dboption, createdDate:dstr,ownername:dbusrname,author:dbauthor,imgurl:dbimgulr,averageRate:dbrating,price:dbprice,url:dburl,position:position,borrowable:borrowable,count:count,borrowableCount:borrowableCount,publisher:dbpublisher};
@@ -112,8 +112,9 @@
                         var submit_text = document.createElement("input");
                         submit_text.type = "button";  
                         submit_text.name = "submition";  
+						submit_text.id = "btnAdd";  
                         submit_text.className="button btn btn-md btn-info";
-                        submit_text.value="添加";
+                        submit_text.value="添加(Ctrl-A)";
                         submit_text.onclick=function(){addBook()};
 						imgRow.appendChild(submit_text);
 
