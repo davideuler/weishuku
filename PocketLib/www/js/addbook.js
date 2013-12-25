@@ -418,6 +418,7 @@
                     },
                     error: function(e) {
                         alert("isbn does not exits");
+						document.getElementById("message").value = "isbn does not exits";
                         document.getElementById("barcode").style.display="block";
                     }
                 });

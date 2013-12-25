@@ -30,6 +30,14 @@
 				   //document.getElementById("btnScan").style.display="none";
 				}
                 
+				if(typeof cordova == 'undefined')
+				{
+					document.getElementById("btnScan").style.display="none";
+				}
+				else
+				{
+					document.getElementById("message").value = "可以输入ISBN查找图书信息，也可以点击'扫描'来扫描图书封面的条形码";
+				}
             }
 
         	function success(resultArray) {
@@ -72,7 +80,7 @@
 					else if (e.keyCode == 65 && e.ctrlKey &&document.getElementById("bookinfo").style.display=="block") 
 					{
 						//alert("Ctrl+A");
-						document.getElementById('btnAdd').click();
+						document.getElementById('btnAdd ').click();
 					} 
 			    }
 		
@@ -89,10 +97,10 @@
             }
         </script>
         <div id="barcode" align="center" valign="center" style="margin-top:2%">
-            <input id = "isbn_text" class="input-sm" class="text" type="text" style="font-size: 1em" onkeypress="searchKeyPress(event);" autofocus />
+            <span class="label label-inverse">ISBN:</span><input id = "isbn_text" class="input-sm" class="text" type="text" style="font-size: 1em" onkeypress="searchKeyPress(event);" autofocus />
             <input id="btnGetBook" type="button" class="btn btn-md btn-info" value="查找" onclick="getIsbn()" style=" font-size: 1em"/> 
             <input id="btnScan" class="btn btn-md btn-info" type="button" value="扫描" onclick="scan()" style="font-size: 1em"/>  
-			<div><label id="message" />  </div>
+			<div> <span id="message" class="label label-inverse">可以输入ISBN查找图书信息，也可以直接扫描枪扫描</span></div>
         </div>
        
         <div id="bookinfo" style="border:#FF0000 solid 2px;">
