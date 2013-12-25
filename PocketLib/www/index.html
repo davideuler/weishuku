@@ -24,10 +24,19 @@
 		            document.getElementById('btnLogin').click();
 		        }
 		    }
+			function onLoad()
+			{
+				var token = window.localStorage.getItem("token");
+				var name = window.localStorage.getItem("name");
+				if(token.length>0 && name.length>0){
+					alert('hello');
+					window.location = "booklist.html";
+				}
+			}
 		</script>
         <title>微书库</title>
     </head>
-    <body>
+    <body onload="onLoad();">
         <div class="app">
             <h1>微书库</h1>
             <div id="deviceready" class="blink">

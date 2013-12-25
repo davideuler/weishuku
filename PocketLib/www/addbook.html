@@ -9,8 +9,7 @@
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" >
         <title>添加图书</title>
         <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
-    </head>
-    <body onload="onBodyLoad()" style="background: url(img/ScanditSDKDemo-Splash.png) no-repeat;background-size: 100%;background-color: #000000" onkeydown="searchKeyPress(event);">
+		
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
@@ -33,10 +32,11 @@
 				if(typeof cordova == 'undefined')
 				{
 					document.getElementById("btnScan").style.display="none";
+					document.getElementById("message").innerHTML="可以输入ISBN查找来添加，也可扫描枪扫描添加";
 				}
 				else
 				{
-					document.getElementById("message").value = "可以输入ISBN查找图书信息，也可以点击'扫描'来扫描图书封面的条形码";
+					document.getElementById("message").innerHTML="可以输入ISBN查找来添加，也可点击'扫描'来扫图书封面条形码添加";
 				}
             }
 
@@ -96,11 +96,14 @@
                 getBookDetail(isbn);
             }
         </script>
+		
+    </head>
+    <body onload="onBodyLoad()" style="background: url(img/ScanditSDKDemo-Splash.png) no-repeat;background-size: 100%;background-color: #000000" onkeydown="searchKeyPress(event);">
         <div id="barcode" align="center" valign="center" style="margin-top:2%">
             <span class="label label-inverse">ISBN:</span><input id = "isbn_text" class="input-sm" class="text" type="text" style="font-size: 1em" onkeypress="searchKeyPress(event);" autofocus />
             <input id="btnGetBook" type="button" class="btn btn-md btn-info" value="查找" onclick="getIsbn()" style=" font-size: 1em"/> 
             <input id="btnScan" class="btn btn-md btn-info" type="button" value="扫描" onclick="scan()" style="font-size: 1em"/>  
-			<div> <span id="message" class="label label-inverse">可以输入ISBN查找图书信息，也可以直接扫描枪扫描</span></div>
+			<div> <span id="message" class="label label-inverse">可以输入ISBN查找来添加，也可点击"扫描"来扫图书封面条形码添加</span></div>
         </div>
        
         <div id="bookinfo" style="border:#FF0000 solid 2px;">
