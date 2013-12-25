@@ -40,12 +40,35 @@ function confirmBorrow(isbn,title,username,borrowReqDate){
 	        timeout: 5000,
 	        success: function (rValue, status) {
 	            if (rValue.ok == 1) {
-	                $('#J_status')[0].innerHTML='"'+booktitle+'"的借书请求已确认:'+ownername;
 					
-					// cri = {isbn:isbn, title:title, ownername:ownername};
-					// j = {borrowDate:curDateStr()};					 
+					//db.books.update(
+  					//   { item: "Divine Comedy" },
+					//    {
+					//       $set: { price: 18 },
+					//       $inc: { stock: 5 }
+					//    }
+					// )
+					cri = {isbn:''+isbn , ownername:ownername};
+					j = {"$set":{"borrowDate":curDateStr()},"$inc":{"count":-1}};					 
+					
+					$.ajax({
+					        type: 'POST',
+							data: 'criteria=' + JSON.stringify(cri) + '&' + 'newobj=' + JSON.stringify(j),
+					        url: BASE_URL + '/book/_update',
+					        dataType: 'json',        //jsonp 支持跨域的访问，可以本地测试login.html（使用远程登陆服务)
+					        timeout: 5000,
+					        success: function (rValue, status) {
+								$('#J_status')[0].innerHTML='"'+booktitle+'"的借书请求已确认:'+ownername;
+								window.location.reload();
+					        },
+					        error: function (e) {
+					            $('#J_status')[0].innerHTML = '*请求失败，请稍后再试';
+					        }
+					    });
+						// end of inner ajax
 						
-					window.location.reload();
+					//
+					
 	                return;
 	            } else{
 	                $('#J_status')[0].innerHTML = '*发送借书请求失败，请联系管理员';
@@ -212,13 +235,13 @@ function allbooks() {
 	        timeout: 5000,
 	        success: function (rValue, status) {
 	            if (rValue.results.length >= 1) {
-					var tbl_body = '<tr><td width="50%">title</td><td width="10%">author</td><td width="10%">owner</td>';
+					var tbl_body = '<tr><td width="50%">title</td><td width="10%">owner</td>';
 					tbl_body += '<td width="10%">count</td><td width="10%">borrow</td><td width="0%" style="display:none"></td>';
 					tbl_body += '</tr>';
 					
 					$.each(rValue.results, function() {
 					    var tbl_row = "";
-						tbl_row = "<td>" + this["title"] + "</td><td>" + this["author"] + "</td><td>" + this["ownername"] + "</td>";
+						tbl_row = "<td>" + this["title"] + "</td><td>" + this["ownername"] + "</td>";
 						tbl_row += "<td>" + this["borrowableCount"] + "</td>";
 
 						if(this["borrowableCount"]>0 && !(this["ownername"].toLowerCase()==username.toLowerCase())){

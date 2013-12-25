@@ -14,7 +14,7 @@
                 var dbpages = document.getElementById('J_pages').value;
                 //var dbcatalog = document.getElementById('J_catalog').value;
                 var dbpublisher = document.getElementById('J_publisher').value;
-                var count = document.getElementById('J_count').value;
+                var count = parseInt(document.getElementById('J_count').value);
                 var dbisbn13 = document.getElementById('J_isbn13').value;
                 var dburl = document.getElementById('J_douurl').value;
 				var position = document.getElementById('J_position').value;
