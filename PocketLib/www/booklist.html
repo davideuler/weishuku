@@ -35,8 +35,20 @@
         <script type="text/javascript" src="js/main.js"></script>
 		<script>
 			function load(){
+				var token = window.localStorage.getItem("token");
+				var name = window.localStorage.getItem("name");
+				
+				if(name==null|| name==null || token.length<=0 || name.length<=0){
+					window.location = "index.html";
+				}
+				
 				var logoutStr = ' <a href="index.html" onclick="logout()">logout</a>';
 				document.getElementById("top").innerHTML='欢迎来到微书库, ' + window.localStorage.getItem("name") + logoutStr ;
+				
+				document.body.scroll = "no";
+				document.body.style.overflow = 'hidden';
+				document.height = window.innerHeight;
+				
 			}
 			
 			function logout(){
