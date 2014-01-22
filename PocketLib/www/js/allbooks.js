@@ -228,13 +228,14 @@ function allbooks() {
     username = window.localStorage.getItem("name");
 	
 	j = {borrowable:"1"};
-	
+
 	$.ajax({
 	        type: 'GET',
 	        url: BASE_URL + '/book/_find?batch_size=100&' + encodeCriteria(j),
 	        dataType: 'json',        //jsonp 支持跨域的访问，可以本地测试login.html（使用远程登陆服务)
 	        timeout: 5000,
 	        success: function (rValue, status) {
+				alert('ok');
 	            if (rValue.results.length >= 1) {
 					var tbl_body = '<tr><td width="50%">title</td><td width="10%">owner</td>';
 					tbl_body += '<td width="10%">count</td><td width="10%">borrow</td><td width="0%" style="display:none"></td>';
@@ -248,7 +249,7 @@ function allbooks() {
 						if(this["borrowableCount"]>0 && !((this["ownername"]+'').toLowerCase()==username.toLowerCase())){
 							tbl_row += "<td><input type='button' class='btn btn-sm btn-info' value='Borrow' onclick=\"borrow(" + this["isbn"] + ",'"+ this["title"] + "','" + this["ownername"]+ "');\"></input></td>";
 						}
-						else if(this["ownername"].toLowerCase()!=username.toLowerCase()){
+						else if(this["ownername"].toLowerCase()!=(''+username.toLowerCase())){
 							tbl_row += "<td>预约</td>";
 						}
 						else

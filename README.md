@@ -46,3 +46,17 @@ db.borrowinfo.ensureIndex( { isbn: 1, ownername:1, username:1 }, { unique: true,
 6.其他：
 豆瓣通过ISBN查找图书信息的Rest Api:
 https://api.douban.com/v2/book/isbn/:9787544826440
+
+
+todos:
+1.分类
+
+2.分城市
+
+3.群组
+
+4.支持IE
+
+5.支持域账号  2014.1.24前
+
+6.谁借的，借的谁的，什么时候借的，还的，预借时间。
