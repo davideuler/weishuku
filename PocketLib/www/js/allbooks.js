@@ -157,15 +157,15 @@ function messages() {
 
 					    tbl_body += "<tr>"+tbl_row+"</tr>";                 
 					});
-					$("#display").html(tbl_body);
+					$("#msgdisplay").html(tbl_body);
 
 	            } else{
-	                $('#contentlist')[0].innerHTML = '*没有查询到数据，请联系管理员';
+	                $('#msgcontentlist')[0].innerHTML = '*没有查询到数据，请联系管理员';
 				}
 
 	        },
 	        error: function (e) {
-	            $('#contentlist')[0].innerHTML = '*请求失败，请稍后再试';
+	            $('#msgcontentlist')[0].innerHTML = '*请求失败，请稍后再试';
 
 	        }
 	    });
@@ -210,15 +210,15 @@ function showMyBorrowedBooks(){
 
 					    tbl_body += "<tr>"+tbl_row+"</tr>";                 
 					});
-					$("#display").html(tbl_body);
+					$("#bodisplay").html(tbl_body);
 
 	            } else{
-	                $('#contentlist')[0].innerHTML = '*没有查询到数据，请联系管理员';
+	                $('#bocontentlist')[0].innerHTML = '*没有查询到数据，请联系管理员';
 				}
 
 	        },
 	        error: function (e) {
-	            $('#contentlist')[0].innerHTML = '*请求失败，请稍后再试';
+	            $('#bocontentlist')[0].innerHTML = '*请求失败，请稍后再试';
 
 	        }
 	    });
@@ -235,7 +235,7 @@ function allbooks() {
 	        dataType: 'json',        //jsonp 支持跨域的访问，可以本地测试login.html（使用远程登陆服务)
 	        timeout: 5000,
 	        success: function (rValue, status) {
-				alert('ok');
+				//alert('ok');
 	            if (rValue.results.length >= 1) {
 					var tbl_body = '<tr><td width="50%">title</td><td width="10%">owner</td>';
 					tbl_body += '<td width="10%">count</td><td width="10%">borrow</td><td width="0%" style="display:none"></td>';
@@ -306,15 +306,15 @@ function mybooks() {
 				
 						tbl_body += "<tr>"+tbl_row+"</tr>";                 
 					});
-					$("#display").html(tbl_body);
+					$("#mydisplay").html(tbl_body);
 
 	            } else{
-	                $('#contentlist')[0].innerHTML = '*没有查询到图书，请联系管理员';
+	                $('#mycontentlist')[0].innerHTML = '*没有查询到图书，请联系管理员';
 				}
 
 	        },
 	        error: function (e) {
-	            $('#contentlist')[0].innerHTML = '*请求失败，请稍后再试';
+	            $('#mycontentlist')[0].innerHTML = '*请求失败，请稍后再试';
 
 	        }
 	    });

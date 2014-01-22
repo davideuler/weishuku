@@ -33,6 +33,7 @@
         <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
 		<script type="text/javascript" src="js/bootstrap.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
+		<script type="text/javascript" src="js/allbooks.js"></script>
 		<script>
 			function load(){
 				var token = window.localStorage.getItem("token");
@@ -59,7 +60,7 @@
 		</script>
         <title>微书库</title>
     </head>
-    <body height="100%" onload="load()" >
+    <body height="100%" onload="load();allbooks();mybooks();showMyBorrowedBooks();messages();" >
 		<div><span id="top" class="label"></span></div>
 		<div id="main" >
 			<div id="search" class="form-group" >
@@ -72,7 +73,7 @@
 			</div>
 			
 			<div id="tbdiv" >
-			    <ul id="tabs" class="nav nav-tabs" data-tabs="tabs" >
+			    <ul id="tabs" class="nav nav-pills" data-tabs="tabs" >
 			        <li class="active"><a href="#all" data-toggle="tab">所有图书</a></li>
 			        <li><a href="#my" data-toggle="tab" >我的图书</a></li>
 			        <li><a href="#myborrowed" data-toggle="tab">已借图书</a></li>
@@ -83,19 +84,31 @@
 		    <div id="my-tab-content" class="tab-content">
 				
 		        <div class="tab-pane active" id="all" >
-					<iframe class="frame" id="iframe-0" src="allbooks.html" width="100%" ></iframe> 
+			        <div id="contentlist" class="table-responsive">
+					    <table class="table" id="display" >
+					    </table>
+					</div>
+					<div  id="msgdiv" class="table-responsive"><label id="J_status" class="label" style="font-color:black;" width="100%"/> </div>
 		         
 				</div>
 		        <div class="tab-pane" id="my">
-					<iframe class="frame" id="iframe-1" src="mybooks.html" width="100%" ></iframe>
+			        <div id="mycontentlist" class="table-responsive" width="100%">
+					    <table class="table" id="mydisplay" >
+					      </table>
+					</div>
 		        </div>
 		        <div class="tab-pane" id="myborrowed">
-					<iframe class="frame" id="iframe-2" src="borrowed.html" width="100%" >
-					</iframe>
+			        <div id="bocontentlist" class="table-responsive">
+					    <table class="table" id="bodisplay" >
+					    </table>
+					</div>
 		        </div>
 		        <div class="tab-pane" id="message">
-					<iframe class="frame" id="iframe-3" src="messages.html" width="100%" >
-					</iframe>
+			        <div id="mgscontentlist" class="table-responsive">
+					    <table class="table" id="msgdisplay" >
+					    </table>
+					</div>
+					<div  id="mmsgdiv" class="table-responsive"><label id="J_status" class="label" style="font-color:black;" width="100%"/> </div>
 		        </div>
 		        <div class="tab-pane" id="add">
 		            <iframe class="frame" id="iframe-4" src="addbook.html"  width="100%"></iframe>
@@ -111,7 +124,8 @@
 							var myI = i;
 							tabs[i].onclick = function() {
 								//$('#iframe-' + myI)[0].contentDocument.location.reload(true);
-								$('#iframe-' + myI)[0].src = $('#iframe-' + myI)[0].src;
+								//$('#iframe-' + myI)[0].src = $('#iframe-' + myI)[0].src;
+								//alert('hello');
 							};
 						})();
 					}
